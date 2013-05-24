@@ -1,0 +1,22 @@
+{
+  "name": "twitter",
+  "version": "0.0.1",
+  "description": "Looking at tweets",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "index.js"
+  },
+  "repository": "",
+  "author": "Niels Doorn",
+  "license": "BSD",
+  "subdomain": "nielsjitsu.twitter",
+  "engines": {
+    "node": "0.8.x"
+  },
+  "dependencies": {
+    "ntwitter": "0.5.x",
+    "node-static": "0.6.x",
+    "socket.io": "0.9.x"
+  }
+}

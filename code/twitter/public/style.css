@@ -1,0 +1,126 @@
+body {
+  color: #333;
+  font: 12px Arial, Helvetica, sans-serif;
+  background-color: #ccc;
+}
+
+#status {
+  right: 5px;
+  top: 2px;
+  width: 100px;
+}
+
+#currentsearch {
+ left: 5px;
+ top: 2px; 
+ width:200px;
+}
+
+
+#status, #currentsearch {
+  position: absolute;
+
+  border-radius: 2px;
+  padding: 2px 5px;
+  text-align: center;
+  color: #444;
+  -webkit-transition: background-color 2s;
+  box-shadow: inset 0 0 2px rgba(255,255,255,.75),inset 0 -5px 20px rgba(0,0,0,.1), 0 2px 3px rgba(0,0,0,.15);
+  -webkit-box-shadow: inset 0 0 2px rgba(255,255,255,.75),inset 0 -5px 20px rgba(0,0,0,.1), 0 2px 3px rgba(0,0,0,.15);
+}
+
+#status.dis {
+  background-color: rgba(255,0,0,0.4);
+}
+
+button {
+  color: #fff;
+  font: bold 12px Arial, Helvetica, sans-serif;
+  text-decoration: none;
+  text-align: center;
+  width: 70px;
+  height: 28px;
+  border: 1px solid #888;
+  background-color: #ccc;
+  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(0,0,0,.0)), to(rgba(255,255,255,.25)));
+  text-shadow: 0 -1px 0 rgba(0,0,0,.25);
+  box-shadow: inset 0 0 2px rgba(255,255,255,.75),inset 0 -5px 20px rgba(0,0,0,.1), 0 2px 3px rgba(0,0,0,.15);
+  -webkit-box-shadow: inset 0 0 2px rgba(255,255,255,.75),inset 0 -5px 20px rgba(0,0,0,.1), 0 2px 3px rgba(0,0,0,.15);
+  /*-webkit-transition: all .1s linear;*/
+}
+
+.button:hover {
+    top: 1px;
+    border: 1px solid #666;
+    background-color: #bbb;
+    outline: 0;
+    box-shadow: inset 0 5px 5px rgba(0,0,0,.35);
+    -webkit-box-shadow: inset 0 5px 5px rgba(0,0,0,.35);
+}
+
+#control {
+    width: 282px;
+    height: 60px;
+    border: 1px solid #aaa;
+    position: absolute;
+    margin-left: -141px;
+    left: 50%;
+    border-radius: 0 0 4px 4px;
+    top: 0px;
+    background-color: #ccc;
+    -webkit-transition: top 0.3s;
+    box-shadow: inset 0 0 2px rgba(255,255,255,.75),inset 0 -5px 20px rgba(0,0,0,.1), 0 2px 3px rgba(0,0,0,.15);
+    -webkit-box-shadow: inset 0 0 2px rgba(255,255,255,.75),inset 0 -5px 20px rgba(0,0,0,.1), 0 2px 3px rgba(0,0,0,.15);
+}
+
+#control.hidden {
+    top: -40px;
+}
+
+#control input[type=text] {
+	padding-left: 5px;
+	color: #fff;
+    font: bold 14px Arial, Helvetica, sans-serif;
+    width: 194px;
+    height: 25px;
+    border: 1px solid #aaa;
+    border-radius: 2px;
+    margin: 2px;
+    border: 1px solid #888;
+    background-color: #ddd;
+    background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(0,0,0,.0)), to(rgba(255,255,255,.25)));
+    text-shadow: 0 -1px 0 rgba(0,0,0,.25);
+    box-shadow: inset 0 0 2px rgba(255,255,255,.75),inset 0 -5px 20px rgba(0,0,0,.1), 0 2px 3px rgba(0,0,0,.15);
+    -webkit-box-shadow: inset 0 0 2px rgba(255,255,255,.75),inset 0 -5px 20px rgba(0,0,0,.1), 0 2px 3px rgba(0,0,0,.15);
+}
+
+#handle {
+    text-align: center;
+    font-size: 2em;
+    color: #aaa;
+    position: absolute;
+    bottom: 0px;
+    width: 282px;
+    left: 0px;
+}
+
+#handle:after { content: "\2026"; } 
+
+
+#tweetblock {
+    overflow: hidden;
+    height: 100%;
+}
+
+#tweets {
+    list-style: none;
+    margin-top: 30px;
+    font-size: 16px;
+}
+
+#tweets li {
+    display: block;
+    margin: 10px;
+    padding: 10px;
+    width: 600px;
+}
