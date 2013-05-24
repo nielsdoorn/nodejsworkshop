@@ -1,0 +1,13 @@
+{
+  "name": "instagram-node-demo",
+  "version": "0.0.1",
+  "dependencies": {
+    "instagram-node-lib": "0.1.x",
+    "node-static": "0.6.x",
+    "socket.io": "0.9.x"
+  },
+  "engines": {
+    "node": "0.10.x",
+    "npm": "1.2.x"
+  }
+}

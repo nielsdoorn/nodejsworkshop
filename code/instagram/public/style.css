@@ -1,0 +1,98 @@
+body {
+  color: #fff;
+  font: 12px Arial, Helvetica, sans-serif;
+  background-color: #ccc;
+  margin: 0;
+  padding: 0;
+}
+
+* { 
+  -moz-box-sizing: border-box; 
+  -webkit-box-sizing: border-box; 
+  box-sizing: border-box; 
+}
+
+#status {
+  display: none;
+  right: 5px;
+  top: 2px;
+  width: 100px;
+  position: absolute;
+  border-radius: 2px;
+  padding: 2px 5px;
+  text-align: center;
+  color: #444;
+  -webkit-transition: background-color 2s;
+  box-shadow: inset 0 0 2px rgba(255,255,255,.75),inset 0 -5px 20px rgba(0,0,0,.1), 0 2px 3px rgba(0,0,0,.15);
+  -webkit-box-shadow: inset 0 0 2px rgba(255,255,255,.75),inset 0 -5px 20px rgba(0,0,0,.1), 0 2px 3px rgba(0,0,0,.15);
+}
+
+#status.dis {
+  display: block;
+  background-color: rgba(255,0,0,0.4);
+}
+
+#pictures {
+  font-size: 0;
+}
+
+#pictures:before {
+  position: absolute;
+  content: 'Waiting for the first picture...';
+  font-size: 120px;
+  width: 100%;
+  text-align: center;
+  z-index: -1;
+  -webkit-transition: 5s;
+}
+
+.picturesLoaded:before {
+  opacity: 0;
+}
+
+.image {
+  display: inline-block;
+  opacity: 0;
+  transition: 3s;
+}
+
+#box {
+  margin: 0 auto;
+  border: 10px solid black;
+  transition: 1s;
+  opacity: 0;
+  display: none;
+  position: fixed;
+  width: 632px;
+  height: 632px;
+  top:20px;
+  left: 50%;
+  margin-left: -316px;
+  background-color: #000;
+}
+
+#caption {
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.6);
+  bottom: 0px;
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+  color: black;
+  font-weight: bold;
+  padding-left: 5px;
+}
+
+#caption a {
+  text-decoration: none;
+  color: black;
+}
+
+#map { 
+  position: fixed;
+  bottom: 0px;
+  border-top: 5px solid black;
+  height: 50%; 
+  width: 100%;
+  background-color: #000;
+}
