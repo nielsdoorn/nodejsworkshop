@@ -33,13 +33,13 @@
 \chapter*{\textcolor{seccol}{Node.js} Workshop}
 
 \section*{What is Node.js?}
-Node.js, usually called node, is an open source platform designed for building fast, scalable network applications using the Chrome JavaScript engine. You can use it to build I/O intensive applications that talk to networks, databases, file systems or other sources.
+Node.js, usually called Node, is an open source platform designed for building fast, scalable network applications using the Chrome JavaScript engine. You can use it to build I/O intensive applications that talk to networks, databases, file systems or other sources.
 
 Node does I/O in a way that is asynchronous which lets it handle lots of different things simultaneously.
 
-Node is not a framework nor a programming language. Programs running on Node are written in JavaScript, the same JavaScript you can use on webpages except that it doesn't run in your browser but on the Chrome JavaScript engine. Therefore, you could call Node.js a platform.
+Node is not a framework nor a programming language. Programs running on Node are written in JavaScript, the same JavaScript you can use on webpages except that it doesn't run in your browser but on a JavaScript engine. Therefore, you could call Node.js a platform.
 
-You can run Node on your Mac, PC or server, in the cloud at Nodejitsu and Heroku but also on a Raspberry Pi\footnote{for example to control a quadcopter}. 
+You can run Node on your Mac, PC or server, in the cloud at for example Nodejitsu and Heroku but also on a Raspberry Pi\footnote{for example to control a quadcopter}. 
 
 \subsection*{The obligatory Hello World}
 
@@ -47,10 +47,10 @@ After you downloaded Node from \href{http://nodejs.org}{nodejs.org} and installe
 
 \lstinputlisting[language=JavaScript]{code/helloworld/helloworld.js}
 
-\noindent Now run it on node from a command prompt or terminal: \colorbox{codecol}{\lstinline[language=bash]{node helloworld.js}}
+\noindent Now run it on Node from a command prompt or terminal: \colorbox{codecol}{\lstinline[language=bash]{node helloworld.js}}
 
 \section*{Core}
-Node has small group of modules commonly called the `node core' that you can use to write your programs with. Here are some but not all of them:
+Node has small group of modules commonly called the `Node core' that you can use to write your programs with. Here are some but not all of them:
 \begin{itemize}
 	\item \textbf{fs} for filesystem access
 	\item \textbf{http} webserver and client
@@ -77,12 +77,11 @@ console.log("We are done!");
 \end{lstlisting}
 NB. This code is just an example to understand node's behavior, not a example on how to work with databases.
 \\
-\\
 \noindent It would take seconds before Node continues with the `console.log' code. Since Node runs only one proces, this becomes a global problem. If you would do this in a webserver and there would be multiple clients connected to the server, everyone would have to wait before the program continues. 
 
 This is different from a language like PHP which runs on a webserver that starts a new process for each request.
 
-You can avoid this by using callbacks. Callbacks are references to functions that can be executed at a later time, for example when the database query is complete.
+You can avoid this by using callbacks. Callbacks are references to functions that can be executed at a later time, for example when the database query is complete. With a callback, you know what will be executed, but not when.
 
 This way, the program continues while the query is running. When the query finishes, the callback is executed, as the following code shows:
 
@@ -90,6 +89,26 @@ This way, the program continues while the query is running. When the query finis
 db.query("SELECT * FROM largeTable", function(result) {
 	doSomethingWithTheResult(result);
 });
+console.log("query is running, but we don't have to wait...");
+\end{lstlisting}
+
+\noindent The callback is the anonymous function which is passed as an argument to the `query' function. It doesn't have to be an anonymous function, it can also be a normal function or a function reference as shown in the next two listings below.
+
+\begin{lstlisting}
+function myCallback(result) {
+	doSomethingWithTheResult(result);
+}
+
+db.query("SELECT * FROM largeTable", myCallback(result));
+console.log("query is running, but we don't have to wait...");
+\end{lstlisting}
+
+\begin{lstlisting}
+var myCallback = function(result) {
+	doSomethingWithTheResult(result);
+}
+
+db.query("SELECT * FROM largeTable", myCallback(result));
 console.log("query is running, but we don't have to wait...");
 \end{lstlisting}
 
@@ -123,10 +142,10 @@ npm will search the repository and returns a list of modules (if you search for 
 npm install ntwitter
 \end{lstlisting}
 
-\noindent If you write programs in Node that depend on modules it is a good idea to include a \texttt{package.json} file that lists the dependencies.
+\noindent If you write programs in Node that depend on modules it is a good idea to include a \texttt{package.json} file that lists the dependencies. Below is an example, but you add lots more information:
 \begin{lstlisting}
 {
-  "name": "socketioExample",
+  "name": "CoolnessApp",
   "version": "0.0.1",
   "dependencies": {
     "node-static": "0.6.x",
@@ -135,16 +154,16 @@ npm install ntwitter
 }
 \end{lstlisting}
 
-When someone downloads your program, you can install all dependencies by running:
+\noindent With a package.json fill you can install all dependencies by running:
 \begin{lstlisting}[language=bash]
 npm install
 \end{lstlisting}
-and npm will install all required modules.
+\noindent and npm will install all required modules and their dependencies.
 
 \section*{Hosting a Node.js app}
 Off course, once you have written something cool you want the world to see it. There are several options for doing this.
 
-Hosting can be done in the cloud at \href{https://www.nodejitsu.com/}{Nodejitsu}, free for the thirty days, and at \href{https://www.heroku.com/}{Heroku}, free for one instance. Both are easy to work with once you got the hang of it. Heroku doesn't yet support websockets whereas Nodejitsu does.
+Hosting can be done in the cloud at \href{https://www.nodejitsu.com/}{Nodejitsu}, free for the thirty days, and at \href{https://www.heroku.com/}{Heroku}, free for one instance. Both are easy to work with once you get the hang of it.
 
 A much more complete list can by found at \href{https://github.com/joyent/node/wiki/Node-Hosting}{Ryan Dahl's list of Node hosting options}.
 
@@ -186,7 +205,7 @@ First listing is the node server:
 \noindent Second one is the client:
 \lstinputlisting{code/socketIO/public/client.js}
 
-\noindent And the HTML to tie them together:
+\noindent And the HTML to tie them together (notice the script tag for the socket.io library):
 \lstinputlisting[language=HTML]{code/socketIO/public/index.html}
 
 \subsection*{Weather API}
@@ -194,14 +213,15 @@ First listing is the node server:
 
 The API can be queried using a REST interface and returns results in JSON format. There is a Node module that provides a wrapper around this interface.
 
-First we'll need to create a \texttt{package.json} file with the dependencies:
-\lstinputlisting[language=JavaScript]{code/weather/package.json}
-\noindent Then we can install the required modules and their dependencies:
+In the code folder there is a working example that uses that module. Don't forget to run:
+
 \begin{lstlisting}[language=bash]
 npm install
 \end{lstlisting}
 
-\noindent To avoid hardcoding the API key in the key we use the environment to set it, in Mac/os and Linux this can be done in the terminal like so:\footnote{In Windows you'll have to do complicated things with system settings (right click on `My Computer', `select properties', open the `advanced' tab, select `Environmental variables', choose new, enter a name `FORECAST\_API\_KEY' and a value: your API key).}
+\noindent before you run it.
+\\
+\noindent To avoid hardcoding the API key in the code we use the environment to set it, in Mac/OS and Linux this can be done in the terminal like so:\footnote{In Windows you'll have to do complicated things with system settings (right click on `My Computer', `select properties', open the `advanced' tab, select `Environmental variables', choose new, enter a name `FORECAST\_API\_KEY' and a value: your API key).}
 \begin{lstlisting}[language=bash]
 export FORECAST_API_KEY=dd987b047af59deaed4a2e2f55d21a0
 \end{lstlisting}
@@ -210,6 +230,8 @@ export FORECAST_API_KEY=dd987b047af59deaed4a2e2f55d21a0
 
 \lstinputlisting[language=JavaScript]{code/weather/weather.js}
 
+\noindent If you run this, it will show the weather forecast summary for the specified location (coordinates).
+
 \begin{lstlisting}[language=bash]
 node weather.js
 \end{lstlisting}
@@ -217,11 +239,10 @@ node weather.js
 \subsection*{Realtime goodness}
 
 \begin{itemize}
-	\item twitter hashtag subscription
+	\item twitter hashtag subscription (example in code folder)
 	\item lastfm search
-	\item instagram integration
-	\item dropbox? https://github.com/sintaxi/node-dbox
-	\item foursquare? https://developer.foursquare.com/overview/realtime
+	\item instagram integration (example in code folder)
+	\item foursquare  \href{https://developer.foursquare.com/overview/realtime}{https://developer.foursquare.com/overview/realtime}
 \end{itemize}
 
 \section*{More information}
@@ -232,15 +253,16 @@ node weather.js
 	\item The art of node: \href{https://github.com/maxogden/art-of-node}{github.com/maxogden/art-of-node}
 	\item Streams: \href{https://github.com/substack/stream-handbook}{github.com/substack/stream-handbook}
 	\item Heroku: \href{https://www.heroku.com/}{heroku.com}
-	\item Nodejitsu: \href{https://www.nodejitsu.com/}{nodejitsu.com/}
+	\item Nodejitsu: \href{https://www.nodejitsu.com/}{nodejitsu.com}
 	\item List of hosting options: \href{https://github.com/joyent/node/wiki/Node-Hosting}{github.com/joyent/node/wiki/Node-Hosting}
 	\item Collection of (realtime) API's: \href{http://www.programmableweb.com/}{programmableweb.com}
 	\item The Node beginner Book: \href{http://www.nodebeginner.org/}{nodebeginner.org}
-	\item Uit in Enschede REST API: \href{http://www.uitinenschede.nl/api/json/?page=index}{uitinenschede.nl/api/json/}
+	\item Uit in Enschede REST API: \href{http://www.uitinenschede.nl/api/json/?page=index}{uitinenschede.nl/api/json}
+	\item Organisations that use node: \href{https://github.com/joyent/node/wiki/Projects,-Applications,-and-Companies-Using-Node}{github.com/joyent/node/wiki/Projects,-Applications,-and-Companies-Using-Node}
 \end{itemize}
 
-\begin{center}
-\resizebox{110mm}{!}{\includegraphics{images/nodejs-light.eps}}
-\end{center}
+%\begin{center}
+%\resizebox{110mm}{!}{\includegraphics{images/nodejs-light.eps}}
+%\end{center}
 
 \end{document}

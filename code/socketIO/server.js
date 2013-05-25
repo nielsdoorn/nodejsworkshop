@@ -6,6 +6,7 @@ var sio = require('socket.io');
 // http server
 var app = http.createServer(handler);
 app.listen(8080);
+console.log("listening on port 8080");
 
 // static webserver
 var file = new static.Server(path.join(__dirname, '.', 'public'));
