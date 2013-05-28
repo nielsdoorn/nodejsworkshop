@@ -1,4 +1,4 @@
-nodejsworkshop
-==============
+Node.js Workshop
+================
 
-Node.js workshop
+Node.js workshop tutorial and code examples.

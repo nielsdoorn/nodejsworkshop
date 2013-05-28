@@ -226,7 +226,9 @@ npm install
 export FORECAST_API_KEY=dd987b047af59deaed4a2e2f55d21a0
 \end{lstlisting}
 
-\noindent Then we can start using the forecast.io API for example by asking the weather for a specific location. In the next example the weather is requested and the summary is retreived from the response.
+\noindent This is a good practice for all API keys you might need, especially if you want to use different keys in development and production or if you want to share your code online.
+
+\noindent Then we can start using the forecast.io API for example by asking the weather for a specific location. In the next example the weather is requested and the summary is retrieved from the response.
 
 \lstinputlisting[language=JavaScript]{code/weather/weather.js}
 
@@ -237,12 +239,16 @@ node weather.js
 \end{lstlisting}
 
 \subsection*{Realtime goodness}
+I find it fun to connect API's together through Node. Especially with API's that push data realtime. There are a lot of API's and most of them work with REST interfaces that return JSON or XML. Each API differs in the way they work. Twitter has a nice one where you can subscribe on hashtags or coordinates. Instagram gives nice results too but I find their API a little bit cumbersome. 
+
+There are many more and I encourage you to try them out! Here are some (obvious) examples:
 
 \begin{itemize}
 	\item twitter hashtag subscription (example in code folder)
 	\item lastfm search
 	\item instagram integration (example in code folder)
-	\item foursquare  \href{https://developer.foursquare.com/overview/realtime}{https://developer.foursquare.com/overview/realtime}
+	\item foursquare \href{https://developer.foursquare.com/overview/realtime}{https://developer.foursquare.com/overview/realtime}
+	\item Collection of (realtime) API's: \href{http://www.programmableweb.com/}{programmableweb.com}
 \end{itemize}
 
 \section*{More information}
@@ -255,7 +261,6 @@ node weather.js
 	\item Heroku: \href{https://www.heroku.com/}{heroku.com}
 	\item Nodejitsu: \href{https://www.nodejitsu.com/}{nodejitsu.com}
 	\item List of hosting options: \href{https://github.com/joyent/node/wiki/Node-Hosting}{github.com/joyent/node/wiki/Node-Hosting}
-	\item Collection of (realtime) API's: \href{http://www.programmableweb.com/}{programmableweb.com}
 	\item The Node beginner Book: \href{http://www.nodebeginner.org/}{nodebeginner.org}
 	\item Uit in Enschede REST API: \href{http://www.uitinenschede.nl/api/json/?page=index}{uitinenschede.nl/api/json}
 	\item Organisations that use node: \href{https://github.com/joyent/node/wiki/Projects,-Applications,-and-Companies-Using-Node}{github.com/joyent/node/wiki/Projects,-Applications,-and-Companies-Using-Node}
