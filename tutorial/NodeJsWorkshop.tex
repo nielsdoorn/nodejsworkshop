@@ -13,7 +13,7 @@
 }
 
 \rhead{Node.js Workshop}
-\lhead{Enschede Web Developers Meetup}
+\lhead{Observe Hack Make}
 \chead{}
 \lfoot{Niels Doorn \copyright~2013}
 \cfoot{}
@@ -69,19 +69,17 @@ var http=require('http');
 \end{lstlisting}
 
 \section*{Callbacks}
-Callbacks are an important concept in Node. Since Node is a asynchronous platform, it won't wait for asynchronous operations to complete before continuing the execution of the program. So if, for example, you want to query a really slow database and it would take seconds to complete you could write something like this:
+Callbacks are an important concept in Node. Since Node is a asynchronous platform, it won't wait for asynchronous operations to complete before continuing the execution of the program. So if, for example, you want to query a really slow database and it would take seconds to complete, you could write something like this:\footnote{This code is just an example to understand node's behavior, not a example on how to work with databases.}
 \begin{lstlisting}
 var result = db.query("SELECT * FROM largeTable");
 doSomethingWithTheResult(result);
 console.log("We are done!");
 \end{lstlisting}
-NB. This code is just an example to understand node's behavior, not a example on how to work with databases.
-\\
 \noindent It would take seconds before Node continues with the `console.log' code. Since Node runs only one proces, this becomes a global problem. If you would do this in a webserver and there would be multiple clients connected to the server, everyone would have to wait before the program continues. 
 
 This is different from a language like PHP which runs on a webserver that starts a new process for each request.
 
-You can avoid this by using callbacks. Callbacks are references to functions that can be executed at a later time, for example when the database query is complete. With a callback, you know what will be executed, but not when.
+You can avoid this by using callbacks. Callbacks are references to functions that can be executed at a later time, for example when the database query is complete. With a callback, you know what \textbf{will} be executed, but not \textbf{when}.
 
 This way, the program continues while the query is running. When the query finishes, the callback is executed, as the following code shows:
 
@@ -131,18 +129,19 @@ One of the reason Node has such a good performance is because a lot of code is b
 \lstinputlisting[language=JavaScript]{code/events/eventsEmitter.js}
 
 \section*{Modules}
-A lot of functionality you might need is already written by other developers. If you are lucky, someone has made a module that does the thing you need. Node comes with its own module manager, npm. Npm can be used to search, install, remove, update packages and lots more. NPM avoids dependency conflicts between modules by nesting dependencies.
+A lot of functionality you might need is already written by other developers. If you are lucky, someone has made a module that does the thing you need. Node comes with its own module manager: NPM. 
+
+NPM can be used to search, install, remove, update packages and lots more. NPM avoids dependency conflicts between modules by nesting dependencies.
 
 If you are looking for a twitter module you can search for twitter:
 \begin{lstlisting}[language=bash]
 npm search twitter
 \end{lstlisting}
-npm will search the repository and returns a list of modules (if you search for `twitter' you get more then 200 results). If you want to install a module you can use the `install' command: 
+NPM will search the repository and returns a list of modules (if you search for `twitter' you get more then 200 results). If you want to install a module you can use the `install' command: 
 \begin{lstlisting}[language=bash]
 npm install ntwitter
 \end{lstlisting}
-
-\noindent If you write programs in Node that depend on modules it is a good idea to include a \texttt{package.json} file that lists the dependencies. Below is an example, but you add lots more information:
+If you write programs in Node that depend on modules, it is a good idea to include a \texttt{package.json} file that lists the dependencies. Below is an example, but you can add lots more information:
 \begin{lstlisting}
 {
   "name": "CoolnessApp",
@@ -161,9 +160,9 @@ npm install
 \noindent and npm will install all required modules and their dependencies.
 
 \section*{Hosting a Node.js app}
-Off course, once you have written something cool you want the world to see it. There are several options for doing this.
+Of course, once you have written something cool you want the world to see it. There are several options for doing this.
 
-Hosting can be done in the cloud at \href{https://www.nodejitsu.com/}{Nodejitsu}, free for the thirty days, and at \href{https://www.heroku.com/}{Heroku}, free for one instance. Both are easy to work with once you get the hang of it.
+Hosting can be done in the cloud at \href{https://www.nodejitsu.com/}{Nodejitsu}, free for the thirty days, and at \href{https://www.heroku.com/}{Heroku}, free for one node. Both are easy to work with once you get the hang of it.
 
 A much more complete list can by found at \href{https://github.com/joyent/node/wiki/Node-Hosting}{Ryan Dahl's list of Node hosting options}.
 
@@ -183,15 +182,15 @@ Most often you want to serve some static content like HTML, CSS, JavaScript file
 \\
 \noindent Install static:
 \begin{lstlisting}[language=bash]
-npm install node-static}
+npm install node-static
 \end{lstlisting}
-\noindent\ The webserver itself is programmed in the file \texttt{Server.js} like this:
+\noindent\ The webserver itself is programmed in the file \texttt{server.js} like this:
 \lstinputlisting[language=JavaScript]{code/staticContent/server.js}
 
 \noindent Now you can put HTML files like \texttt{Index.html} in the public folder:
 \lstinputlisting[language=HTML]{code/staticContent/public/index.html}
 
-\noindent And of course you can do the same with CSS files like \texttt{Style.css}:
+\noindent And of course you can do the same with CSS files like \texttt{style.css}:
 \lstinputlisting[language=CSS]{code/staticContent/public/style.css}
 
 \subsection*{Socket I/O Events}
@@ -199,13 +198,13 @@ Creating realtime connectivity between your program and a browser can be done us
 
 As programmers, we don't have to worry about that very much. Listening for and sending events between browser and server is for both the server and the client done in JavaScript so sometimes, when you are really concentrated and you are switching back and forth between server code and client code you'll forget what you are doing (in my experience). But the nice thing about it is that you don't have to switch between programming languages all the time.
 
-First listing is the node server:
+First listing is the node server (\texttt{code/socketIO/server.js}):
 \lstinputlisting{code/socketIO/server.js}
 
-\noindent Second one is the client:
+\noindent Second one is the client (\texttt{code/socketIO/public/client.js}):
 \lstinputlisting{code/socketIO/public/client.js}
 
-\noindent And the HTML to tie them together (notice the script tag for the socket.io library):
+\noindent And the HTML to tie them together (\texttt{code/socketIO/public/index.html}) (notice the script tag for the socket.io library):
 \lstinputlisting[language=HTML]{code/socketIO/public/index.html}
 
 \subsection*{Weather API}
@@ -213,13 +212,8 @@ First listing is the node server:
 
 The API can be queried using a REST interface and returns results in JSON format. There is a Node module that provides a wrapper around this interface.
 
-In the code folder there is a working example that uses that module. Don't forget to run:
-
-\begin{lstlisting}[language=bash]
-npm install
-\end{lstlisting}
-
-\noindent before you run it.
+In the code folder there is a working example that uses that module. Don't forget to run \colorbox{codecol}{\lstinline[language=bash]{npm install}} before you run it.
+\\
 \\
 \noindent To avoid hardcoding the API key in the code we use the environment to set it, in Mac/OS and Linux this can be done in the terminal like so:\footnote{In Windows you'll have to do complicated things with system settings (right click on `My Computer', `select properties', open the `advanced' tab, select `Environmental variables', choose new, enter a name `FORECAST\_API\_KEY' and a value: your API key).}
 \begin{lstlisting}[language=bash]
@@ -258,6 +252,7 @@ There are many more and I encourage you to try them out! Here are some (obvious)
 	\item Socket.IO: \href{http://socket.io/}{socket.io}
 	\item The art of node: \href{https://github.com/maxogden/art-of-node}{github.com/maxogden/art-of-node}
 	\item Streams: \href{https://github.com/substack/stream-handbook}{github.com/substack/stream-handbook}
+	\item Node and Express: \href{http://ericleads.com/2013/05/getting-started-with-node-and-express/}{ericleads.com/2013/05/getting-started-with-node-and-express}
 	\item Heroku: \href{https://www.heroku.com/}{heroku.com}
 	\item Nodejitsu: \href{https://www.nodejitsu.com/}{nodejitsu.com}
 	\item List of hosting options: \href{https://github.com/joyent/node/wiki/Node-Hosting}{github.com/joyent/node/wiki/Node-Hosting}

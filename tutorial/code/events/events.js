@@ -6,6 +6,7 @@ var server = http.createServer(function (req, res) {
 }).listen(1337, '127.0.0.1');
 
 
+// subscribe to a certain event
 server.on('connection', function (stream) {
-  console.log('someone connected!');
+  console.log('someone connected to our server!');
 });

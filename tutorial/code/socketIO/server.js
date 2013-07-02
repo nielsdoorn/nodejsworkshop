@@ -9,7 +9,8 @@ app.listen(8080);
 console.log("listening on port 8080");
 
 // static webserver
-var file = new static.Server(path.join(__dirname, '.', 'public'));
+var file = new static.Server('./public');
+
 function handler(req, res) {
   file.serve(req, res);
 }
