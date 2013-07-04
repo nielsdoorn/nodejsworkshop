@@ -1,0 +1,4 @@
+nodejsworkshop
+==============
+
+Node.js workshop
