@@ -68,7 +68,47 @@ Node has small group of modules commonly called the `Node core' that you can use
 var http=require('http');
 \end{lstlisting}
 
-\section*{Callbacks}
+\section*{Events}
+One of the reason Node has such a good performance is because a lot of code is based on events. Events work based on the publish/subscribe design pattern. If you are interested in an event, for example if someone connects to your server, you subscribe to that event and each time the event occurs, your code is called.
+
+\lstinputlisting[language=JavaScript]{code/events/events.js}
+
+\noindent It is also possible to generate custom events using event emitters. If you want your object to emit events you'll have to inherit from EventEmitter. The following code gives a basic example.
+
+\lstinputlisting[language=JavaScript]{code/events/eventsEmitter.js}
+
+\section*{Modules}
+A lot of functionality you might need is already written by other developers. If you are lucky, someone has made a module that does the thing you need. Node comes with its own module manager: NPM. 
+
+NPM can be used to search, install, remove, update packages and lots more. NPM avoids dependency conflicts between modules by nesting dependencies.
+
+If you are looking for a twitter module you can search for twitter:
+\begin{lstlisting}[language=bash]
+npm search twitter
+\end{lstlisting}
+NPM will search the repository and returns a list of modules (if you search for `twitter' you get more then 200 results). If you want to install a module you can use the `install' command: 
+\begin{lstlisting}[language=bash]
+npm install ntwitter
+\end{lstlisting}
+If you write programs in Node that depend on modules, it is a good idea to include a \texttt{package.json} file that lists the dependencies. Below is an example, but you can add lots more information:
+\begin{lstlisting}
+{
+  "name": "CoolnessApp",
+  "version": "0.0.1",
+  "dependencies": {
+    "node-static": "0.6.x",
+    "socket.io": "0.9.x"
+  }
+}
+\end{lstlisting}
+
+\noindent With a package.json fill you can install all dependencies by running:
+\begin{lstlisting}[language=bash]
+npm install
+\end{lstlisting}
+\noindent and npm will install all required modules and their dependencies.
+
+\section*{Some details on Callbacks}
 Callbacks are an important concept in Node. Since Node is a asynchronous platform, it won't wait for asynchronous operations to complete before continuing the execution of the program. So if, for example, you want to query a really slow database and it would take seconds to complete, you could write something like this:\footnote{This code is just an example to understand node's behavior, not a example on how to work with databases.}
 \begin{lstlisting}
 var result = db.query("SELECT * FROM largeTable");
@@ -119,46 +159,6 @@ doing something usefull while waiting...
 nothing to see here...
 \end{lstlisting}
 
-\section*{Events}
-One of the reason Node has such a good performance is because a lot of code is based on events. Events work based on the publish/subscribe design pattern. If you are interested in an event, for example if someone connects to your server, you subscribe to that event and each time the event occurs, your code is called.
-
-\lstinputlisting[language=JavaScript]{code/events/events.js}
-
-\noindent It is also possible to generate custom events using event emitters. If you want your object to emit events you'll have to inherit from EventEmitter. The following code gives a basic example.
-
-\lstinputlisting[language=JavaScript]{code/events/eventsEmitter.js}
-
-\section*{Modules}
-A lot of functionality you might need is already written by other developers. If you are lucky, someone has made a module that does the thing you need. Node comes with its own module manager: NPM. 
-
-NPM can be used to search, install, remove, update packages and lots more. NPM avoids dependency conflicts between modules by nesting dependencies.
-
-If you are looking for a twitter module you can search for twitter:
-\begin{lstlisting}[language=bash]
-npm search twitter
-\end{lstlisting}
-NPM will search the repository and returns a list of modules (if you search for `twitter' you get more then 200 results). If you want to install a module you can use the `install' command: 
-\begin{lstlisting}[language=bash]
-npm install ntwitter
-\end{lstlisting}
-If you write programs in Node that depend on modules, it is a good idea to include a \texttt{package.json} file that lists the dependencies. Below is an example, but you can add lots more information:
-\begin{lstlisting}
-{
-  "name": "CoolnessApp",
-  "version": "0.0.1",
-  "dependencies": {
-    "node-static": "0.6.x",
-    "socket.io": "0.9.x"
-  }
-}
-\end{lstlisting}
-
-\noindent With a package.json fill you can install all dependencies by running:
-\begin{lstlisting}[language=bash]
-npm install
-\end{lstlisting}
-\noindent and npm will install all required modules and their dependencies.
-
 \section*{Hosting a Node.js app}
 Of course, once you have written something cool you want the world to see it. There are several options for doing this.
 
@@ -180,7 +180,7 @@ The next example does exactly that. It creates a webserver using the \texttt{htt
 \subsection*{Serving static web content}
 Most often you want to serve some static content like HTML, CSS, JavaScript files and images to the visitor of your website. It would be painful to handle all those request hardcoded in your program. It is much better to use a static server for those requests. This can be done with a module called `Node-static':\\
 \\
-\noindent Install static:
+\noindent Install node static using npm:
 \begin{lstlisting}[language=bash]
 npm install node-static
 \end{lstlisting}

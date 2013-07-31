@@ -1,12 +1,10 @@
 var http = require('http');
 var static = require('node-static');
 
-var file = new(static.Server)('./public');
-
-http.createServer(function(request, response) {
-  request.addListener('end', function () {
-    file.serve(request, response);
-  }).resume();
-}).listen(8080);
-
-console.log('listening on port 8080');
+// http server
+var app = http.createServer(handler);
+app.listen(1337);
+var file = new static.Server('./public');
+function handler(req, res) {
+  file.serve(req, res);
+}

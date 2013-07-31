@@ -4,7 +4,7 @@ var static = require('node-static');
 var twitter = require('ntwitter');
 var sio = require('socket.io');
 
-var currentsearch = "nodejs";
+var currentsearch = "ohm2013";
 
 var twit = new twitter({
   consumer_key: process.env.TWITTER_CONSUMER_KEY,
@@ -13,10 +13,10 @@ var twit = new twitter({
   access_token_secret: process.env.TWITTER_TOKEN_SECRET
 });
 
+// http server
 var app = http.createServer(handler);
-app.listen(8080);
-
-var file = new static.Server(path.join(__dirname, '.', 'public'));
+app.listen(1337);
+var file = new static.Server('./public');
 function handler(req, res) {
   file.serve(req, res);
 }

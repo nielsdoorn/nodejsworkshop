@@ -1,0 +1,119 @@
+\documentclass[a4paper]{report}
+
+\usepackage{NielsPackage}
+
+\lstset{language=JavaScript}
+
+\hypersetup{
+	pdfauthor = {Niels Doorn},
+	pdftitle = {Node.js Twitter Lab},
+	pdfsubject = {Node.js, workshop, JavaScript},
+	pdfkeywords = {Node.js},
+	pdfcreator = {NielsDoorn/EnschedeWebDevelopersMeetup/RocVanTwente}
+}
+
+\rhead{Node.js Twitter Lab}
+\lhead{Observe Hack Make}
+\chead{}
+\lfoot{Niels Doorn \copyright~2013}
+\cfoot{}
+\rfoot{\thepage}
+
+\fancypagestyle{plain}{
+	\fancyhf{}
+	\fancyfoot[L]{Niels Doorn \copyright~2013}
+	\fancyfoot[C]{}
+	\fancyfoot[R]{\thepage}
+	\renewcommand{\headrulewidth}{0pt}
+	\renewcommand{\footrulewidth}{0.4pt}
+}
+
+\begin{document}
+
+\chapter*{\textcolor{seccol}{Node.js} Twitter Lab}
+
+\section*{Introduction}
+In this lab we'll make a simple node app that retrieves tweets containing a keyword. It runs in a terminal, but you can easily turn it into a web app.
+
+You'll need a twitter account for this lab and a api key.
+
+\subsection*{Step 1: setup and dependencies}
+
+\begin{lstlisting}[language=bash]
+touch package.json
+touch twitter.js
+\end{lstlisting}
+
+\noindent We'll use the \texttt{ntwitter} module to connect with twitter, therefore we add a dependency in the \texttt{package.json} file:
+\lstinputlisting[language=JavaScript]{code/lab/package.json.1}
+
+After that we can install the dependencies by running npm:
+\begin{lstlisting}[language=bash]
+npm install
+\end{lstlisting}
+
+\subsection*{Step 2: Client API keys}
+
+\noindent We need some client keys from twitter for this. You can get them at \url{https://dev.twitter.com}. We set them as environment variables to avoid having o hardcode them.
+\begin{lstlisting}[language=bash]
+export TWITTER_CONSUMER_KEY=xxxxxxxxxxxxx
+export TWITTER_CONSUMER_SECRET=xxxxxxxxxxxxx
+export TWITTER_ACCESS_TOKEN_KEY=xxxxxxxxxxxxx
+export TWITTER_TOKEN_SECRET=xxxxxxxxxxxxx
+\end{lstlisting}
+
+\subsection*{Step 3: using the API}
+
+\noindent Now we can use the API, let's try a simple search in the terminal:
+\lstinputlisting[language=JavaScript]{code/lab/twitter-terminal.js}
+
+Now we can run it ans see what happens:
+\begin{lstlisting}[language=bash]
+node twitter.js
+\end{lstlisting}
+
+\subsection*{Step 4: create a webserver}
+Ok, thats all very nice, but it would be much more fun if we could see all those incredible tweets on a website. So let's create a webserver that updates the page every time a new tweet comes in.
+
+If we want to create a nice website for this, we'll probably end up serving some static content like css files, images and javascript files for the client. We are going to use \texttt{node-static} for that. To install that module we'll update the \texttt{package.json} file to include this new dependency.
+
+\lstinputlisting[language=JavaScript]{code/lab/package.json}
+
+After that we can run npm again to install it:
+\begin{lstlisting}[language=bash]
+npm install
+\end{lstlisting}
+
+\noindent Now we create the webserver in our twitter app by adding these lines:
+
+\begin{lstlisting}[language=JavaScript]
+var http = require('http');
+var static = require('node-static');
+
+// http server
+var app = http.createServer(handler);
+app.listen(1337);
+var file = new static.Server('./public');
+function handler(req, res) {
+  file.serve(req, res);
+}
+\end{lstlisting}
+
+\noindent We've configured the webserver to serve static content from the public folder, so we'll have to create that folder:
+\begin{lstlisting}[language=bash]
+mkdir public
+touch pubic/index.html
+touch public/client.js
+\end{lstlisting}
+
+\noindent in that folder we can put all our static content like a HTML file:
+
+\lstinputlisting[language=HTML]{code/lab/public/index.html}
+
+\subsection*{Step 5: Tweet events}
+
+\noindent and client side javascript:
+
+\lstinputlisting[language=JavaScript]{code/lab/public/client.js}
+
+\end{document}
