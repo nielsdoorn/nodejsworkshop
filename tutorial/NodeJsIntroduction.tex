@@ -12,7 +12,7 @@
 	pdfcreator = {NielsDoorn/EnschedeWebDevelopersMeetup/RocVanTwente}
 }
 
-\rhead{Node.js Workshop}
+\rhead{Node.js Introduction}
 \lhead{Observe Hack Make}
 \chead{}
 \lfoot{Niels Doorn \copyright~2013}
@@ -30,7 +30,7 @@
 
 \begin{document}
 
-\chapter*{\textcolor{seccol}{Node.js} Workshop}
+\chapter*{\textcolor{seccol}{Node.js} Introduction}
 
 \section*{What is Node.js?}
 Node.js, usually called Node, is an open source platform designed for building fast, scalable network applications using the Chrome JavaScript engine. You can use it to build I/O intensive applications that talk to networks, databases, file systems or other sources.
@@ -49,7 +49,7 @@ After you downloaded Node from \href{http://nodejs.org}{nodejs.org} and installe
 
 \noindent Now run it on Node from a command prompt or terminal: \colorbox{codecol}{\lstinline[language=bash]{node helloworld.js}}
 
-\section*{Core}
+\section*{Core Modules}
 Node has small group of modules commonly called the `Node core' that you can use to write your programs with. Here are some but not all of them:
 \begin{itemize}
 	\item \textbf{fs} for filesystem access
@@ -68,16 +68,7 @@ Node has small group of modules commonly called the `Node core' that you can use
 var http=require('http');
 \end{lstlisting}
 
-\section*{Events}
-One of the reason Node has such a good performance is because a lot of code is based on events. Events work based on the publish/subscribe design pattern. If you are interested in an event, for example if someone connects to your server, you subscribe to that event and each time the event occurs, your code is called.
-
-\lstinputlisting[language=JavaScript]{code/events/events.js}
-
-\noindent It is also possible to generate custom events using event emitters. If you want your object to emit events you'll have to inherit from EventEmitter. The following code gives a basic example.
-
-\lstinputlisting[language=JavaScript]{code/events/eventsEmitter.js}
-
-\section*{Modules}
+\section*{Modules and NPM}
 A lot of functionality you might need is already written by other developers. If you are lucky, someone has made a module that does the thing you need. Node comes with its own module manager: NPM. 
 
 NPM can be used to search, install, remove, update packages and lots more. NPM avoids dependency conflicts between modules by nesting dependencies.
@@ -159,6 +150,15 @@ doing something usefull while waiting...
 nothing to see here...
 \end{lstlisting}
 
+\section*{Events}
+One of the reason Node has such a good performance is because a lot of code is based on events. Events work based on the publish/subscribe design pattern. If you are interested in an event, for example if someone connects to your server, you subscribe to that event and each time the event occurs, your code is called.
+
+\lstinputlisting[language=JavaScript]{code/events/events.js}
+
+\noindent It is also possible to generate custom events using event emitters. If you want your object to emit events you'll have to inherit from EventEmitter. The following code gives a basic example.
+
+\lstinputlisting[language=JavaScript]{code/events/eventsEmitter.js}
+
 \section*{Hosting a Node.js app}
 Of course, once you have written something cool you want the world to see it. There are several options for doing this.
 
@@ -166,7 +166,7 @@ Hosting can be done in the cloud at \href{https://www.nodejitsu.com/}{Nodejitsu}
 
 A much more complete list can by found at \href{https://github.com/joyent/node/wiki/Node-Hosting}{Ryan Dahl's list of Node hosting options}.
 
-\section*{Examples}
+\section*{Examples and code snippets}
 
 \subsection*{Webserver}
 Node doesn't run on a webserver, instead you have to write your own! 
