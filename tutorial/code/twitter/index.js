@@ -21,8 +21,7 @@ function handler(req, res) {
   file.serve(req, res);
 }
 
-
-// connect socket.io
+var io = sio.listen(app);
 io.sockets.on('connection', function (socket) {
 
   io.sockets.emit('new search', currentsearch);

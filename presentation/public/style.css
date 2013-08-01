@@ -38,7 +38,7 @@ footer, header, hgroup, menu, nav, section {
 body {
     line-height: 1;
 }
-ol, ul {
+ul {
     list-style: none;
 }
 blockquote, q {
@@ -185,7 +185,7 @@ a:focus {
 */
 .impress-enabled .step {
   margin: 0;
-  opacity: 0.0;
+  opacity: 0.7;
 
   -webkit-transition: opacity 1s;
   -moz-transition:    opacity 1s;
@@ -238,6 +238,9 @@ a:focus {
   font-size: 0.6em !important;
 }
 
+.lab {
+  background-color: #ccc;
+}
 
 #title {
     padding: 0;

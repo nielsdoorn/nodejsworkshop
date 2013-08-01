@@ -32,4 +32,4 @@ function queryTwitter(q) {
   });
 };
 
-queryTwitter("playing");
+queryTwitter("ohm2013");
