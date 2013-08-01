@@ -9,6 +9,6 @@ window.onload = function() {
 socket.on('tweet', function (tweet) {
 	var tweetListItem = document.createElement('li');
 	tweetListItem.innerHTML = tweet;
-	tweetList.appendChild(tweetListItem);
+	tweetList.insertBefore(tweetListItem, tweetList.firstChild);
 });
 
