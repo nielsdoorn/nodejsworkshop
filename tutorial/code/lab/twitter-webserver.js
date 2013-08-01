@@ -1,5 +1,6 @@
 var http = require('http');
 var static = require('node-static');
+var sio = require('socket.io');
 
 // http server
 var app = http.createServer(handler);
@@ -8,6 +9,9 @@ var file = new static.Server('./public');
 function handler(req, res) {
   file.serve(req, res);
 }
+
+// socket io
+var io = sio.listen(app);
 
 var twitter = require('ntwitter');
 
@@ -22,12 +26,8 @@ function queryTwitter(q) {
   twit.stream('statuses/filter', {'track':q}, function(stream) {
     stream.on('data', function (data) {
       if (data != undefined && data.user != undefined) {
-        console.log('tweet', data.user.screen_name+' tweets: '+data.text);
+        io.sockets.emit('tweet', data.user.screen_name+' tweets: '+data.text);
       }
-    });
-
-    stream.on('error', function(error) {
-      console.log('error', error);
     });
   });
 };

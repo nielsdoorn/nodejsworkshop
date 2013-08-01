@@ -230,7 +230,12 @@ a:focus {
 }
 
 .slide a {
-  font-size: 2.1em;
+  font-size: 1.6em;
+  color: blue;
+}
+
+.long {
+  font-size: 0.6em !important;
 }
 
 

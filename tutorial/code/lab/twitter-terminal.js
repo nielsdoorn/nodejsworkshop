@@ -14,11 +14,7 @@ function queryTwitter(q) {
         console.log('tweet', data.user.screen_name+' tweets: '+data.text);
       }
     });
-
-    stream.on('error', function(error) {
-      console.log('error', error);
-    });
   });
 };
 
-queryTwitter("playing");
+queryTwitter("ohm2013");

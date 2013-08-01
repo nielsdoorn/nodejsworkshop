@@ -13,7 +13,7 @@
 }
 
 \rhead{Node.js Twitter Lab}
-\lhead{Observe Hack Make}
+\lhead{OHM2013}
 \chead{}
 \lfoot{Niels Doorn \copyright~2013}
 \cfoot{}
@@ -33,11 +33,12 @@
 \chapter*{\textcolor{seccol}{Node.js} Twitter Lab}
 
 \section*{Introduction}
-In this lab we'll make a simple node app that retrieves tweets containing a keyword. It runs in a terminal, but you can easily turn it into a web app.
+In this lab we'll make a simple node app that retrieves tweets containing a keyword. We'll start with a version running in the terminal, after that we create a webserver around it.
 
-You'll need a twitter account for this lab and a api key.
+\section*{Terminal version}
 
-\subsection*{Step 1: setup and dependencies}
+\subsection*{Step 1: Setup and dependencies}
+Let's get started. Assuming that you have installed node.js (if not, go do so now and come back here), create a directory for this lab and create the first two files we are going to need. One is the app itself \texttt{twitter.js} and the other one is used for dependency management (this is going to be enterprise ready so we'll work like pros here).
 
 \begin{lstlisting}[language=bash]
 touch package.json
@@ -47,14 +48,14 @@ touch twitter.js
 \noindent We'll use the \texttt{ntwitter} module to connect with twitter, therefore we add a dependency in the \texttt{package.json} file:
 \lstinputlisting[language=JavaScript]{code/lab/package.json.1}
 
-After that we can install the dependencies by running npm:
+After that we can install the dependencies by running the node package manager npm:
 \begin{lstlisting}[language=bash]
 npm install
 \end{lstlisting}
 
 \subsection*{Step 2: Client API keys}
 
-\noindent We need some client keys from twitter for this. You can get them at \url{https://dev.twitter.com}. We set them as environment variables to avoid having o hardcode them.
+Some more hassle before we can get going. We need some client keys from twitter for this app. You can get them at \url{https://dev.twitter.com}. We set them as environment variables to avoid having to hardcode them.
 \begin{lstlisting}[language=bash]
 export TWITTER_CONSUMER_KEY=xxxxxxxxxxxxx
 export TWITTER_CONSUMER_SECRET=xxxxxxxxxxxxx
@@ -63,21 +64,58 @@ export TWITTER_TOKEN_SECRET=xxxxxxxxxxxxx
 \end{lstlisting}
 
 \subsection*{Step 3: using the API}
+Ok, now we can get going. Open \texttt{twitter.js} in your favorite editor and start typing.
 
-\noindent Now we can use the API, let's try a simple search in the terminal:
-\lstinputlisting[language=JavaScript]{code/lab/twitter-terminal.js}
+We want to use the installed ntwitter module so we start by telling node that we require it. And then we configure it.
 
-Now we can run it ans see what happens:
+\begin{lstlisting}[language=JavaScript]
+var twitter = require('ntwitter');
+
+var twit = new twitter({
+  consumer_key: process.env.TWITTER_CONSUMER_KEY,
+  consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
+  access_token_key: process.env.TWITTER_ACCESS_TOKEN_KEY,
+  access_token_secret: process.env.TWITTER_TOKEN_SECRET
+});
+\end{lstlisting}
+
+\noindent Remember to test often so you can already run this program in your terminal. Nothing should happen.
+
+\noindent To execute a twitter query, we are going to write a function that asks twitter for statuses filtered by a keyword. If it receives a tweet, it will emmit a `data' event to which we subscribe. We get a parameter named `data' each time that event happens which is a structure with a lot of information about the tweet. We use the screen name and the actual content of the tweet.
+
+\begin{lstlisting}[language=JavaScript]
+function queryTwitter(q) { 
+  twit.stream('statuses/filter', {'track':q}, function(stream) {
+    stream.on('data', function (data) {
+      if (data != undefined && data.user != undefined) {
+        console.log('tweet', data.user.screen_name+' tweets: '+data.text);
+      }
+    });
+  });
+};
+\end{lstlisting}
+
+\noindent We should be good to go now, all we need to do is call this new function:
+
+\begin{lstlisting}[language=JavaScript]
+queryTwitter("ohm2013");
+\end{lstlisting}
+
+\noindent Now we can run it ans see what happens:
 \begin{lstlisting}[language=bash]
 node twitter.js
 \end{lstlisting}
+
+\noindent You should see tweets appearing in your terminal (if you have internet connection and someone actually tweets about ohm2013). If you want to see a lot of tweets, try `now playing' instead of ohm2013.
+
+\section*{Enterprise Web App Edition}
 
 \subsection*{Step 4: create a webserver}
 Ok, thats all very nice, but it would be much more fun if we could see all those incredible tweets on a website. So let's create a webserver that updates the page every time a new tweet comes in.
 
 If we want to create a nice website for this, we'll probably end up serving some static content like css files, images and javascript files for the client. We are going to use \texttt{node-static} for that. To install that module we'll update the \texttt{package.json} file to include this new dependency.
 
-\lstinputlisting[language=JavaScript]{code/lab/package.json}
+\lstinputlisting[language=JavaScript]{code/lab/package.json.2}
 
 After that we can run npm again to install it:
 \begin{lstlisting}[language=bash]
@@ -99,7 +137,7 @@ function handler(req, res) {
 }
 \end{lstlisting}
 
-\noindent We've configured the webserver to serve static content from the public folder, so we'll have to create that folder:
+\noindent We've configured the webserver to serve static content from the public folder, so we'll have to create that folder and some files to serve:
 \begin{lstlisting}[language=bash]
 mkdir public
 touch pubic/index.html
@@ -108,11 +146,52 @@ touch public/client.js
 
 \noindent in that folder we can put all our static content like a HTML file:
 
-\lstinputlisting[language=HTML]{code/lab/public/index.html}
+\lstinputlisting[language=HTML]{code/lab/public/index.html.1}
 
-\subsection*{Step 5: Tweet events}
+\noindent If we run this now we can see tweets in the terminal and if we visit the website we see a hello there page.
 
-\noindent and client side javascript:
+\subsection*{Step 5: Send new tweets to the browser}
+
+Now we need to find a way to send new tweets to the webpage when they arrive. We are going to use socket.io for that.
+
+Once again we'll need to add that module to our dependencies the \texttt{package.json} file:
+
+\lstinputlisting[language=JavaScript]{code/lab/package.json}
+
+After that we can run npm once again to install it:
+\begin{lstlisting}[language=bash]
+npm install
+\end{lstlisting}
+
+\noindent and edit the top of our \texttt{twitter.js} file to use socket.io:
+
+\begin{lstlisting}[language=JavaScript]
+var sio = require('socket.io');
+\end{lstlisting}
+
+\noindent We need to tell socket.io where our webapp is so that it can handle communication with the clients. We do this after we created the webserver:
+
+\begin{lstlisting}[language=JavaScript]
+var io = sio.listen(app);
+\end{lstlisting}
+
+\noindent Now, if we receive a new tweet, we'll broadcast it to all the connected clients. For this we change the queryTwitter function we already have:
+
+\begin{lstlisting}[language=JavaScript]
+function queryTwitter(q) { 
+  twit.stream('statuses/filter', {'track':q}, function(stream) {
+    stream.on('data', function (data) {
+      if (data != undefined && data.user != undefined) {
+        io.sockets.emit('tweet', data.user.screen_name+' tweets: '+data.text);
+      }
+    });
+  });
+};
+\end{lstlisting}
+
+\subsection*{Step 6: Handle new tweets in the browser}
+
+\noindent And the client side javascript:
 
 \lstinputlisting[language=JavaScript]{code/lab/public/client.js}
 
