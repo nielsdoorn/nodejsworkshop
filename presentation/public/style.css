@@ -107,7 +107,7 @@ a {
   text-decoration: none;
   padding: 0 0.1em;
   background: rgba(255,255,255,0.5);
-  text-shadow: -1px -1px 2px rgba(100,100,100,0.9);
+  /*text-shadow: -1px -1px 2px rgba(100,100,100,0.9);*/
   border-radius: 0.2em;
 
   -webkit-transition: 0.5s;
@@ -120,7 +120,6 @@ a {
 a:hover,
 a:focus {
   background: rgba(255,255,255,1);
-  text-shadow: -1px -1px 2px rgba(100,100,100,0.5);
 }
 
 /*
@@ -234,12 +233,21 @@ a:focus {
   color: blue;
 }
 
+.smaller {
+  font-size: 0.9em;
+}
+
 .long {
   font-size: 0.6em !important;
 }
 
 .lab {
   background-color: #ccc;
+}
+
+.email-link {
+  font-size: 1em !important;
+  color: black !important;
 }
 
 #title {

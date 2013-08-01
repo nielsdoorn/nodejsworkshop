@@ -24,20 +24,20 @@
 <div id="logo"></div>
 
 <div id="impress">
-    <div id="intro" class="step slide" data-x="-2000" data-y="-2000">
+    <div id="intro" class="step slide" data-x="-2200" data-y="-2400" data-scale="1.2">
         <h2>Let's make something</h2>
         <p>Something realtime, something cool!</p>
         <br />
         <p>...and by doing so, learn Node.js</p>
     </div>
 
-    <div id="slide-1.1" class="step slide" data-x="-2000" data-y="-2500" data-scale="0.1">
+    <div id="slide-1.1" class="step slide" data-x="-2000" data-y="-1600" data-scale="0.42">
         <h2>About me</h2>
         <p>Niels Doorn</p>
         <p>@nielsdoorn - github.com/nielsdoorn</p>
     </div>
 
-    <div id="slide-1" class="step slide" data-x="-1000" data-y="-2000">
+    <div id="slide-1" class="step slide" data-x="-1000" data-y="-1800">
         <h2>Obligatory Hello World</h2>
         <p>Let's start simple...</p>
         <pre data-src="code/helloworld.js"></pre>
@@ -50,32 +50,32 @@
         <p>Node.js is an open source platform to run asynchronous JavaScript programs</p>
     </div>
 
-    <div id="slide-3" class="step slide" data-x="1000" data-y="-2000">
+    <div id="slide-3" class="step slide" data-x="1000" data-y="-2000" data-scale="0.42">
         <h2>About Node.js</h2>
         <p>Easy to use and very much qualified to handle huge amounts of requests</p>
     </div>
 
-    <div id="slide-4" class="step slide" data-x="-2000" data-y="-1000">
+    <div id="slide-4" class="step slide" data-x="-2000" data-y="-1000" data-scale="0.8">
         <h2>Node.js for web apps</h2>
         <p>It doesn't run on a webserver, you'll have to write your own (which is fun)</p>
     </div>
-    <div id="slide-5" class="step slide" data-x="-1000" data-y="-1000">
+    <div id="slide-5" class="step slide" data-x="-1000" data-y="-1000" data-scale="1.1">
         <h2>NPM</h2>
         <p>Node comes with it's own package manager </p>
         <pre><code class="language-bash">npm install</code></pre>
         <pre><code class="language-bash">npm search twitter</code></pre>
         <pre><code class="language-bash">npm uninstall node-static</code></pre>
     </div>
-    <div id="slide-6" class="step slide" data-x="0" data-y="-1000">
+    <div id="slide-6" class="step slide" data-x="0" data-y="-1000" data-scale="0.8">
         <h2>About JavaScript</h2>
         <p>I like JavaScript</p>
     </div>
-    <div id="slide-7" class="step slide" data-x="1000" data-y="-1000">
+    <div id="slide-7" class="step slide" data-x="1000" data-y="-1000" data-scale="1.2">
         <h2>Blocking the processing</h2>
         <p>There is only one process running to do everything</p>
     </div>
 
-    <div id="slide-8" class="step slide" data-x="-2000" data-y="1000">
+    <div id="slide-8" class="step slide" data-x="-2000" data-y="1000" data-scale="0.42">
         <h2>Callbacks</h2>
         <p>You know what will be done, you don't know when</p>
         <pre><code class="language-javascript">thisTakesALongTime(function() {
@@ -83,7 +83,7 @@
 });</code></pre>
         <p>Avoid nesting callbacks to deep :-)</p>
     </div>
-    <div id="slide-9" class="step slide" data-x="-1000" data-y="1200">
+    <div id="slide-9" class="step slide" data-x="-1000" data-y="1200" data-scale="1.1">
         <h2>Core Modules</h2>
         <ul>
             <li>fs</li>
@@ -99,13 +99,13 @@
         <pre><code class="language-javascript">var http = require('http');
 </code></pre>
     </div>
-    <div id="slide-10" class="step slide" data-x="0" data-y="1200">
+    <div id="slide-10" class="step slide" data-x="0" data-y="1200" data-scale="0.7">
         <h2>External modules</h2>
         <p></p>
         <pre><code class="language-javascript">var http = require('ntwitter');
 </code></pre>
     </div>
-    <div id="slide-11" class="step slide" data-x="1000" data-y="1400">
+    <div id="slide-11" class="step slide" data-x="1200" data-y="1100" data-scale="0.3">
         <h2>Some demos</h2>
         <p>instagram, cube, twitter</p>
     </div>
@@ -150,7 +150,9 @@
         <p>Introduction, lab and code:<br />
         <a href="http://www.xvr.in/eBb">http://xvr.in/eBb</a><br />
         which is:<br />
-        <a class="long" href="https://github.com/nielsdoorn/nodejsworkshop/tree/master/tutorial">https://github.com/nielsdoorn/nodejsworkshop/tree/master/tutorial</a>
+        <a class="long" href="https://github.com/nielsdoorn/nodejsworkshop/tree/master/tutorial">https://github.com/nielsdoorn/nodejsworkshop/tree/master/tutorial</a><br />
+        Or clone it with git:<br />
+        <pre><code class="language-bash smaller">git clone git@github.com:nielsdoorn/nodejsworkshop.git</code></pre>
         <!--
         <p>Introduction:<br /><a href="http://www.xvr.in/ZAb">http://xvr.in/ZAb</a></p>
         <p>Lab:<br /><a href="http://www.xvr.in/bBb">http://xvr.in/bBb</a></p>
@@ -158,7 +160,7 @@
     -->
     </div>
    
-    <div id="title" class="step" data-x="0" data-y="100" data-scale="4">
+    <div id="title" class="step" data-x="0" data-y="110" data-scale="4">
         <span class="try">Build a realtime webapp using</span>
         <h1>Node.js</h1>
     </div>
