@@ -189,10 +189,30 @@ function queryTwitter(q) {
 };
 \end{lstlisting}
 
+\noindent We name our broadcast event `tweet'. This is important to remember to handle the incoming tweets in the browser.
+
 \subsection*{Step 6: Handle new tweets in the browser}
 
+One of the nice things of socket.io is the use of almost identical code on the server and in the browser. We'll need to add another link to a javascript file to our HTML like so:
+
+\lstinputlisting[language=HTML]{code/lab/public/index.html}
+
+\noindent Please note that also the message line is removed in the HTML.
+\\
+\\
 \noindent And the client side javascript:
 
+\lstinputlisting[language=JavaScript]{code/lab/public/client.js.1}
+
+\noindent Now we receive tweets but we don't do anything with them. Let's append them to a unordered list on the page:
+
 \lstinputlisting[language=JavaScript]{code/lab/public/client.js}
+
+\subsection*{Step 7: Test it, deploy it, sell it}
+Now we have our basic realtime web app with Node.js ready! Run it and test it with your browser! You should see tweets arriving in (almost) realtime. 
+
+It is not looking very nice yet, but what we have is all ingredients to create a webserver, connect with a external datasource, receive realtime data and send it to all connected clients.
+
+I hope you enjoyed this lab and I hope you learned something about Node.js and that you well be able to use it in one of your (future) projects!
 
 \end{document}
