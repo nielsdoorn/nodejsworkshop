@@ -1,0 +1,34 @@
+@import url(http://fonts.googleapis.com/css?family=Lilita+One);
+@import url(http://fonts.googleapis.com/css?family=Josefin+Sans:400,400italic);
+
+body {
+	font-family: 'Josefin Sans', sans-serif;
+}
+
+ul {
+	list-style: none;
+	-webkit-transition: 1s;
+	-moz-transition: 1s;
+	-ms-transition: 1s;
+	-o-transition: 1s;
+	transition: 1s;
+}
+
+li {
+	font-size: 1.1em;
+}
+
+li:nth-child(1) {
+	font-size: 3em;
+}
+
+li:nth-child(2) {
+	font-size: 1.6em;
+}
+
+li:nth-child(3) {
+	font-size: 1.2em;
+}
+
+li:nth-child(even) {background: #CCC}
+li:nth-child(odd) {background: #FFF}
