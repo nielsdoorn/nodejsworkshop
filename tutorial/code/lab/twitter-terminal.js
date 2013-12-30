@@ -17,4 +17,4 @@ function queryTwitter(q) {
   });
 };
 
-queryTwitter("ohm2013");
+queryTwitter("moscow2013");

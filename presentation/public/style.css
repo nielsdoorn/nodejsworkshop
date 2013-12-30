@@ -1,13 +1,5 @@
-@font-face {
-  font-family: 'roboto_slabregular';
-  src: url('RobotoSlab-Regular-webfont.eot'); /* IE9 Compat Modes */
-  src: url('RobotoSlab-Regular-webfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-       url('RobotoSlab-Regular-webfont.woff') format('woff'), /* Modern Browsers */
-       url('RobotoSlab-Regular-webfont.ttf')  format('truetype'), /* Safari, Android, iOS */
-       url('RobotoSlab-Regular-webfont.svg#svgFontName') format('svg'); /* Legacy iOS */
-  font-weight: normal;
-  font-style: normal;  
-}
+@import url(http://fonts.googleapis.com/css?family=Open+Sans);
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,700);
 
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -63,12 +55,12 @@ table {
     want to leave anybody behind.
 */
 body {
-  font-family: 'roboto_slabregular';
+  font-family: 'Open Sans', sans-serif;
   -webkit-font-smoothing:antialiased;
   min-height: 740px;
   font-size: 18pt;
 
-  background-color: #026873;
+  background-color: #085987;
   background-image: -webkit-gradient(linear, 0 100%, 0 0, color-stop(0.5, rgba(255,255,255,.07)), color-stop(0.5, transparent));
   background-image: -webkit-linear-gradient(90deg, rgba(255,255,255,.07) 50%, transparent 50%);
   background-image: -moz-linear-gradient(90deg, rgba(255,255,255,.07) 50%, transparent 50%);
@@ -78,18 +70,17 @@ body {
   linear-gradient(90deg, transparent 50%, rgba(255,255,255,.17) 50%),
   linear-gradient(90deg, transparent 50%, rgba(255,255,255,.19) 50%);
   background-size: 13px, 29px, 37px, 53px;     
-   
 }
 
 #logo {
- background: url(images/ohm2013-oblong-960px.png); 
- -webkit-transform: rotatez(-90deg);
- background-size: 480px 83px;
- width: 480px;
- height: 83px;
+ background-size: 301px 50px;
+ padding: 0.25em;
+ color: #085987; /* OTS Blue */
+ font-weight: 700;
+ font-size: 1.3em;
  position: fixed;
- right: -200px;
- bottom: 200px;
+ right: 0;
+ bottom: 0;
 }
 
 /*
@@ -103,7 +94,7 @@ i, em { font-style: italic }
     ... and give links a nice look.
 */
 a {
-  color: inherit;
+  color: #1F8AB6;
   text-decoration: none;
   padding: 0 0.1em;
   background: rgba(255,255,255,0.5);
@@ -119,6 +110,7 @@ a {
 
 a:hover,
 a:focus {
+  color: #2FB0D5;
   background: rgba(255,255,255,1);
 }
 
@@ -165,7 +157,7 @@ a:focus {
   width: 900px;
   padding: 40px;
   margin: 20px auto;
-  font-family: 'roboto_slabregular';
+  font-family: 'Open Sans', sans-serif;
 
   -webkit-box-sizing: border-box;
   -moz-box-sizing:    border-box;
@@ -197,7 +189,8 @@ a:focus {
 
 .slide {
   display: block;
-  font-family: 'roboto_slabregular';
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
 
   width: 900px;
   height: 700px;
@@ -218,19 +211,15 @@ a:focus {
 
 
 .slide h2 {
-  color: rgb(204, 102, 102);
+  color: #085987;
   font-size: 2.2em;
+  font-weight: 700;
   line-height: 2.3em;
 }
 
 .slide p {  
   font-size: 1.4em;
   line-height: 1.6em;
-}
-
-.slide a {
-  font-size: 1.6em;
-  color: blue;
 }
 
 .smaller {
@@ -242,7 +231,7 @@ a:focus {
 }
 
 .lab {
-  background-color: #ccc;
+  background-color: rgb(244, 244, 244);
 }
 
 .email-link {
@@ -264,7 +253,7 @@ a:focus {
     top: -0.6em;
     left: -1.9em;
     color: rgb(0, 0, 0);;
-    text-shadow: 4px 4px 5px #333; 
+    /* text-shadow: 4px 4px 5px #333; */
 
     -webkit-transform: translateZ(20px);
     -moz-transform:    translateZ(20px);
@@ -275,11 +264,11 @@ a:focus {
 
 #title h1 {
     font-size: 4.0em;
+    font-weight: 700;
     position: absolute;
     left: 0.6em;
     top: 0.6em;
-    color: white;
-    text-shadow: 4px 4px 5px #333; 
+    /* text-shadow: 4px 4px 5px #333; */
 
     -webkit-transform: translateZ(50px);
     -moz-transform:    translateZ(50px);
