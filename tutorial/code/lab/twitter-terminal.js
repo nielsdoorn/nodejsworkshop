@@ -17,4 +17,4 @@ function queryTwitter(q) {
   });
 };
 
-queryTwitter("opentechschool");
+queryTwitter("train");
