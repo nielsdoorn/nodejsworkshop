@@ -114,6 +114,21 @@ a:focus {
   background: rgba(255,255,255,1);
 }
 
+dt {
+  display: inline-block;
+  width: 40%;
+  line-height: 2em;
+}
+
+dd {
+  display: inline-block;
+  width: 60%;
+}
+
+li {
+  line-height: 1.5em;
+}
+
 /*
     Because the main point behind the impress.js demo is to demo impress.js
     we display a fallback message for users with browsers that don't support
