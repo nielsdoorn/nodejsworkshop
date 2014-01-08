@@ -1,20 +1,22 @@
 var http = require('http');
 var static = require('node-static');
 var sio = require('socket.io');
+var twitter = require('ntwitter');
 
 // http server
-var app = http.createServer(handler);
-app.listen(1337);
-var file = new static.Server('./public');
-function handler(req, res) {
+var port = process.env.PORT || 1337;
+console.log('Server running on port '+port);
+var file = new(static.Server)('./public', {
+  cache: 0
+});
+var app = http.createServer(function(req, res) {
   file.serve(req, res);
-}
+}).listen(port);
 
 // socket io
 var io = sio.listen(app);
 
-var twitter = require('ntwitter');
-
+// twitter
 var twit = new twitter({
   consumer_key: process.env.TWITTER_CONSUMER_KEY,
   consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
@@ -32,4 +34,4 @@ function queryTwitter(q) {
   });
 };
 
-queryTwitter("moscow2013");
+queryTwitter("opentechschool");

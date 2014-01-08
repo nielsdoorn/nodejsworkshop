@@ -4,7 +4,7 @@ var static = require('node-static');
 var twitter = require('ntwitter');
 var sio = require('socket.io');
 
-var currentsearch = "ohm2013";
+var currentsearch = "OpenTechShool";
 
 var twit = new twitter({
   consumer_key: process.env.TWITTER_CONSUMER_KEY,
@@ -13,13 +13,14 @@ var twit = new twitter({
   access_token_secret: process.env.TWITTER_TOKEN_SECRET
 });
 
-// http server
-var app = http.createServer(handler);
-app.listen(1337);
-var file = new static.Server('./public');
-function handler(req, res) {
+var port = process.env.PORT || 1337;
+console.log('Server running on port '+port);
+var file = new(static.Server)('./public', {
+  cache: 0
+});
+var app = http.createServer(function(req, res) {
   file.serve(req, res);
-}
+}).listen(port);
 
 var io = sio.listen(app);
 io.sockets.on('connection', function (socket) {
@@ -32,9 +33,7 @@ io.sockets.on('connection', function (socket) {
     io.sockets.emit('new search', q);
     currentsearch = q;
   });
-
 });
-
 
 var query = function(q) { 
   twit.stream('statuses/filter', {'track':q}, function(stream) {

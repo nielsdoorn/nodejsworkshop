@@ -17,4 +17,4 @@ function queryTwitter(q) {
   });
 };
 
-queryTwitter("moscow2013");
+queryTwitter("opentechschool");
