@@ -57,13 +57,22 @@
 
     <div id="aboutjs" class="step slide" data-x="0" data-y="-1000" data-scale="0.8">
         <h2>About JavaScript</h2>
-        <p>I like JavaScript</p>
+        <p>I for one happen to like JavaScript</p>
         <p>
             <img src="images/whyJavaScript.png"></img>
         </p>
         <p>
             <img src="images/goodparts.jpg" width="250px"></img>
         </p>
+    </div>
+
+    <div id="sucks" class="step slide" data-x="0" data-y="-1500" data-scale="0.3">
+        <h2>Although this sucks</h2>
+        <pre><code class="language-javascript">
+            > [5, 10, 1].sort();
+
+            [ 1, 10, 5 ]
+        </code></pre>
     </div>
 
     <div id="aboutnode" class="step slide" data-x="0" data-y="-2000">
@@ -75,6 +84,15 @@
         <h2>Some demos</h2>
         <p><a href="http://insta.nielsdoorn.nl">instagram</a>, <a href="http://cube.nielsdoorn.nl">cube</a>, <a href="http://localhost:1337">twitter</a></p>
     </div>
+
+    <div id="helloworld" class="step slide" data-x="-1000" data-y="-1800">
+        <h2>Obligatory Hello World</h2>
+        <p>Let's see how it works</p>
+        <pre data-src="code/helloworld.js"></pre>
+        <pre><code class="language-bash">node helloworld.js</code></pre>
+        <pre><code class="language-bash">> Hello OpenTechSchool!</code></pre>
+    </div>
+
 
     <div id="why" class="step slide" data-x="1000" data-y="-2000" data-scale="0.42">
         <h2>Why Node.js</h2>
@@ -126,20 +144,21 @@
         <pre><code class="language-javascript">var twitter = require('ntwitter');</code></pre>
     </div>
 
-    <div id="helloworld" class="step slide" data-x="-1000" data-y="-1800">
-        <h2>Obligatory Hello World</h2>
-        <p>Let's see how it works</p>
-        <pre data-src="code/helloworld.js"></pre>
-        <pre><code class="language-bash">node helloworld.js</code></pre>
-        <pre><code class="language-bash">> Hello OpenTechSchool!</code></pre>
-    </div>
-
     <div id="webserver" class="step slide" data-x="-2000" data-y="-1000" data-scale="0.8">
         <h2>Node.js for web apps</h2>
         <p>It doesn't run on a webserver, you'll have to write your own (which is fun).</p>
     </div>
 
     <!-- labs part -->
+
+    <div id="getgoing" class="step slide lab" data-x="-3000" data-y="1400">
+        <h2>Let's get going!</h2>
+    </div>
+
+    <div id="install" class="step slide lab" data-x="-2000" data-y="1800">
+        <h2>If you haven't allready</h2>
+        <p>Install node.js and npm from <a href="http://nodejs.org">nodejs.org</a></p>
+    </div>
 
     <div id="twitterlab" class="step slide lab" data-x="-1000" data-y="2000">
         <h2>Lab: Realtime Twitter</h2>
@@ -152,7 +171,7 @@
     </div>
     <div id="ntwitter" class="step slide lab" data-x="0" data-y="2000">
         <h2>Ntwitter module</h2>
-        <p>We'll use ntwitter module for this, and define depencencies in package.json</p>
+        <p>We'll use ntwitter module for this, and define depencies in package.json</p>
         <pre><code class="language-javascript">
 {
   "name": "twitter",
@@ -167,6 +186,8 @@
         <pre><code class="language-bash">npm install</code></pre>
     </div>
 
+    <!-- more explanation? -->
+
     <div id="material" class="step slide lab" data-x="-2200" data-y="2600">
         <h2>Links for this workshop</h2>
         <dl>
@@ -179,14 +200,7 @@
     </div>
 
 
-    <div id="getgoing" class="step slide lab" data-x="-3000" data-y="1400">
-        <h2>Let's get going!</h2>
-    </div>
-
-    <div id="install" class="step slide lab" data-x="-2000" data-y="1800">
-        <h2>If you haven't allready</h2>
-        <p>Install node.js and npm from <a href="http://nodejs.org">nodejs.org</a></p>
-    </div>
+    
 </div>
 
     <script src="vendor/prism/prism.js"></script>
