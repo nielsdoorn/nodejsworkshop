@@ -6,7 +6,7 @@ var url = require("url");
 var instagram = require('instagram-node-lib');
 var file = new(static.Server)('./public');
 
-var port = process.env.PORT || 5000;
+var port = process.env.PORT || 1337;
 var callbackUrl = process.env.CALLBACK_URL;
 
 var history = new Array();

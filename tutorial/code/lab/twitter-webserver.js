@@ -6,9 +6,11 @@ var twitter = require('ntwitter');
 // http server
 var port = process.env.PORT || 1337;
 console.log('Server running on port '+port);
+
 var file = new(static.Server)('./public', {
   cache: 0
 });
+
 var app = http.createServer(function(req, res) {
   file.serve(req, res);
 }).listen(port);

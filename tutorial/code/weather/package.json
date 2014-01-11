@@ -3,5 +3,19 @@
   "version": "0.0.1",
   "dependencies": {
     "forecast.io": "0.0.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nielsdoorn/nodejsworkshop.git"
+  },
+  "keywords": [
+    "node",
+    "workshop"
+  ],
+  "author": "Niels Doorn",
+  "main": "weather.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node weather.js"
   }
 }
