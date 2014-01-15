@@ -49,6 +49,9 @@ After you downloaded Node from \href{http://nodejs.org}{nodejs.org} and installe
 
 \noindent Now run it on Node from a command prompt or terminal: \colorbox{codecol}{\lstinline[language=bash]{node helloworld.js}}
 
+\subsubsection*{Exercises}
+Create your very own `Hello World' node program!
+
 \section*{Core Modules}
 Node has small group of modules commonly called the `Node core' that you can use to write your programs with. Here are some but not all of them:
 \begin{itemize}
@@ -67,6 +70,9 @@ Node has small group of modules commonly called the `Node core' that you can use
 \begin{lstlisting}
 var http=require('http');
 \end{lstlisting}
+
+\subsubsection*{Exercises}
+Create a program that displays the \textbf{hostname} and the \textbf{uptime} for your computer, using the `os' module. More information on the API of the OS module can be found here: \href{http://nodejs.org/api/os.html}{nodejs.org/api/os.html}.
 
 \section*{Modules and NPM}
 A lot of functionality you might need is already written by other developers. If you are lucky, someone has made a module that does the thing you need. Node comes with its own module manager: NPM. 
@@ -98,6 +104,14 @@ If you write programs in Node that depend on modules, it is a good idea to inclu
 npm install
 \end{lstlisting}
 \noindent and npm will install all required modules and their dependencies.
+
+\subsubsection*{Exercises}
+\begin{itemize}
+	\item Search for modules that can provide functions for `instagram' integration.
+	\item Can you get more information about one of those modules?
+	\item Install one of the modules.
+	\item Create a \texttt{package.json} file with a dependency for a module and install all dependencies.
+\end{itemize}
 
 \section*{Some details on Callbacks}
 Callbacks are an important concept in Node. Since Node is a asynchronous platform, it won't wait for asynchronous operations to complete before continuing the execution of the program. So if, for example, you want to query a really slow database and it would take seconds to complete, you could write something like this:\footnote{This code is just an example to understand node's behavior, not a example on how to work with databases.}
@@ -150,6 +164,12 @@ doing something usefull while waiting...
 nothing to see here...
 \end{lstlisting}
 
+\subsubsection*{Exercises}
+\begin{itemize}
+	\item Create a program that lists all the files in a directory using \texttt{fs.readdir}\footnote{\url{http://nodejs.org/docs/latest/api/fs.html}} with \texttt{console.log}.
+	\item Use a seperate function as a callback.
+\end{itemize}
+
 \section*{Events}
 One of the reason Node has such a good performance is because a lot of code is based on events. Events work based on the publish/subscribe design pattern. If you are interested in an event, for example if someone connects to your server, you subscribe to that event and each time the event occurs, your code is called.
 
@@ -166,6 +186,9 @@ Hosting can be done in the cloud at \href{https://www.nodejitsu.com/}{Nodejitsu}
 
 A much more complete list can by found at \href{https://github.com/joyent/node/wiki/Node-Hosting}{Ryan Dahl's list of Node hosting options}.
 
+\subsubsection*{Exercise (optional)}
+Create a node.js program running on Heroku\footnote{\url{http://heroku.com}}, Nodejitsu\footnote{url{https://www.nodejitsu.com/}} or any other cloud platform.
+
 \section*{Examples and code snippets}
 
 \subsection*{Webserver}
@@ -176,6 +199,9 @@ The next example does exactly that. It creates a webserver using the \texttt{htt
 \lstinputlisting[language=JavaScript]{code/webserver/webserver.js}
 
 \noindent If you want to handle requests to different URL's in different ways, you'll need to route those requests to different parts of code. Now, that is out of scope for this workshop, but the node beginners book \footnote{\url{http://www.nodebeginner.org/}} has a nice example of how you can do this.
+
+\subsubsection*{Exercises}
+Create a webserver, serving a message in your browser.
 
 \subsection*{Serving static web content}
 Most often you want to serve some static content like HTML, CSS, JavaScript files and images to the visitor of your website. It would be painful to handle all those request hardcoded in your program. It is much better to use a static server for those requests. This can be done with a module called `Node-static':\\
@@ -192,6 +218,9 @@ npm install node-static
 
 \noindent And of course you can do the same with CSS files like \texttt{style.css}:
 \lstinputlisting[language=CSS]{code/staticContent/public/style.css}
+
+\subsubsection*{Exercises}
+Create a webserver, serving a complete webpage with HTML, CSS and client side JavaScript.
 
 \subsection*{Socket I/O Events}
 Creating realtime connectivity between your program and a browser can be done using a module called socket.io. There are others, but I don't have enough time right now to check them all out. Socket.io automatically tries to use the best way to communicate with your browser. If your browser supports websockets, it will use websockets. Otherwise it will use Flash sockets, Ajax long polling, Ajax multipart streaming, a forever Iframe or JSONP polling.
@@ -232,15 +261,22 @@ export FORECAST_API_KEY=dd987b047af59deaed4a2e2f55d21a0
 node weather.js
 \end{lstlisting}
 
+\subsubsection*{Exercises}
+\begin{itemize}
+	\item Create the weather application as shown above.
+	\item Make sure to use an environmental variable for the API key.
+	\item Show the weather forecast for your favourite holiday destination.
+\end{itemize}
+
 \subsection*{Realtime goodness}
 I find it fun to connect API's together through Node. Especially with API's that push data realtime. There are a lot of API's and most of them work with REST interfaces that return JSON or XML. Each API differs in the way they work. Twitter has a nice one where you can subscribe on hashtags or coordinates. Instagram gives nice results too but I find their API a little bit cumbersome. 
 
 There are many more and I encourage you to try them out! Here are some (obvious) examples:
 
 \begin{itemize}
-	\item twitter hashtag subscription (example in code folder)
+	\item twitter hashtag subscription (will do this in the lab)
 	\item lastfm search
-	\item instagram integration (example in code folder, only works online)
+	\item instagram integration (example in code folder, NB. only works online)
 	\item foursquare \href{https://developer.foursquare.com/overview/realtime}{https://developer.foursquare.com/overview/realtime}
 	\item Collection of (realtime) API's: \href{http://www.programmableweb.com/}{programmableweb.com}
 \end{itemize}

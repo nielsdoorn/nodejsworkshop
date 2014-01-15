@@ -21,8 +21,8 @@
     "node": "*"
   },
   "dependencies": {
-    "ntwitter": "*",
-    "node-static": "*",
-    "socket.io": "*"
+    "ntwitter": "0.5.x",
+    "node-static":"0.7.x",
+    "socket.io": "0.9.x"
   }
 }
