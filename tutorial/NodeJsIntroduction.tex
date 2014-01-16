@@ -72,12 +72,14 @@ var http=require('http');
 \end{lstlisting}
 
 \subsubsection*{Exercises}
-Create a program that displays the \textbf{hostname} and the \textbf{uptime} for your computer, using the `os' module. More information on the API of the OS module can be found here: \href{http://nodejs.org/api/os.html}{nodejs.org/api/os.html}.
+Create a program that displays the \textbf{hostname} and the \textbf{uptime} for your computer, using the `os' module.\\
+\\
+\noindent More information on the API of the OS module can be found here: \href{http://nodejs.org/api/os.html}{nodejs.org/api/os.html}.
 
 \section*{Modules and NPM}
-A lot of functionality you might need is already written by other developers. If you are lucky, someone has made a module that does the thing you need. Node comes with its own module manager: NPM. 
+A lot of functionality you might need is already written by other developers. If you are lucky, someone has made a module that does the thing you need. 
 
-NPM can be used to search, install, remove, update packages and lots more. NPM avoids dependency conflicts between modules by nesting dependencies.
+Node comes with its own module manager, the Node Package Manager (NPM). NPM can be used to search, install, remove, update packages and lots more. NPM avoids dependency conflicts between modules by nesting dependencies.
 
 If you are looking for a twitter module you can search for twitter:
 \begin{lstlisting}[language=bash]
@@ -120,11 +122,13 @@ var result = db.query("SELECT * FROM largeTable");
 doSomethingWithTheResult(result);
 console.log("We are done!");
 \end{lstlisting}
-\noindent It would take seconds before Node continues with the `console.log' code. Since Node runs only one proces, this becomes a global problem. If you would do this in a webserver and there would be multiple clients connected to the server, everyone would have to wait before the program continues. 
+\noindent It would take seconds before Node continues with the `console.log' code. Since Node runs only \textbf{one} proces, this becomes a global problem. If you would do this in a webserver and there would be multiple clients connected to the server, everyone would have to wait before the program continues. 
 
 This is different from a language like PHP which runs on a webserver that starts a new process for each request.
 
-You can avoid this by using callbacks. Callbacks are references to functions that can be executed at a later time, for example when the database query is complete. With a callback, you know what \textbf{will} be executed, but not \textbf{when}.
+You can avoid this problem by using callbacks. Callbacks are references to functions that can be executed at a later time, for example when the database query is complete. 
+
+With a callback, you know what \textbf{will} be executed, but not \textbf{when}.
 
 This way, the program continues while the query is running. When the query finishes, the callback is executed, as the following code shows:
 
@@ -143,15 +147,7 @@ function myCallback(result) {
 }
 
 db.query("SELECT * FROM largeTable", myCallback(result));
-console.log("query is running, but we don't have to wait...");
-\end{lstlisting}
 
-\begin{lstlisting}
-var myCallback = function(result) {
-	doSomethingWithTheResult(result);
-}
-
-db.query("SELECT * FROM largeTable", myCallback(result));
 console.log("query is running, but we don't have to wait...");
 \end{lstlisting}
 
@@ -159,7 +155,7 @@ console.log("query is running, but we don't have to wait...");
 \lstinputlisting[language=JavaScript]{code/callbacks/callback.js}
 If you run this, the output will be:
 \begin{lstlisting}[language=css]
-$> node callback.js 
+node callback.js 
 doing something usefull while waiting...
 nothing to see here...
 \end{lstlisting}
@@ -179,17 +175,7 @@ One of the reason Node has such a good performance is because a lot of code is b
 
 \lstinputlisting[language=JavaScript]{code/events/eventsEmitter.js}
 
-\section*{Hosting a Node.js app}
-Of course, once you have written something cool you want the world to see it. There are several options for doing this.
-
-Hosting can be done in the cloud at \href{https://www.nodejitsu.com/}{Nodejitsu}, free for the thirty days, and at \href{https://www.heroku.com/}{Heroku}, free for one node. Both are easy to work with once you get the hang of it.
-
-A much more complete list can by found at \href{https://github.com/joyent/node/wiki/Node-Hosting}{Ryan Dahl's list of Node hosting options}.
-
-\subsubsection*{Exercise (optional)}
-Create a node.js program running on Heroku\footnote{\url{http://heroku.com}}, Nodejitsu\footnote{url{https://www.nodejitsu.com/}} or any other cloud platform.
-
-\section*{Examples and code snippets}
+\section*{Usefull examples and code snippets}
 
 \subsection*{Webserver}
 Node doesn't run on a webserver, instead you have to write your own! 
@@ -280,6 +266,16 @@ There are many more and I encourage you to try them out! Here are some (obvious)
 	\item foursquare \href{https://developer.foursquare.com/overview/realtime}{https://developer.foursquare.com/overview/realtime}
 	\item Collection of (realtime) API's: \href{http://www.programmableweb.com/}{programmableweb.com}
 \end{itemize}
+
+\section*{Hosting a Node.js app}
+Of course, once you have written something cool you want the world to see it. There are several options for doing this.
+
+Hosting can be done in the cloud at \href{https://www.nodejitsu.com/}{Nodejitsu}, free for the thirty days, and at \href{https://www.heroku.com/}{Heroku}, free for one node. Both are easy to work with once you get the hang of it.
+
+A much more complete list can by found at \href{https://github.com/joyent/node/wiki/Node-Hosting}{Ryan Dahl's list of Node hosting options}.
+
+\subsubsection*{Exercise (optional)}
+Create a node.js program running on Heroku\footnote{\url{http://heroku.com}}, Nodejitsu\footnote{\url{https://www.nodejitsu.com/}} or any other cloud platform.
 
 \section*{More information}
 \begin{itemize}
