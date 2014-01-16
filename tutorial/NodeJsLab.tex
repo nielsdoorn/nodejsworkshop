@@ -5,10 +5,10 @@
 \lstset{language=JavaScript}
 
 \hypersetup{
-	pdfauthor = {Niels Doorn},
+	pdfauthor = {Niels Doorn @nielsdoorn github.com/nielsdoorn},
 	pdftitle = {Node.js Twitter Lab},
-	pdfsubject = {Node.js, workshop, JavaScript},
-	pdfkeywords = {Node.js},
+	pdfsubject = {Node.js, workshop, JavaScript, opentechschool},
+	pdfkeywords = {Node.js, javascript, programming, awesome, cool},
 	pdfcreator = {NielsDoorn}
 }
 
@@ -54,8 +54,10 @@ npm install
 \end{lstlisting}
 
 \subsection*{Step 2: Client API keys}
-
 Some more hassle before we can get going. We need some client keys from twitter for this app. You can get them at \url{https://dev.twitter.com}. We set them as environment variables to avoid having to hardcode them.
+
+If you don't have a twitter account, ask the the instructor for temporary API keys.
+
 \begin{lstlisting}[language=bash]
 export TWITTER_CONSUMER_KEY=xxxxxxxxxxxxx
 export TWITTER_CONSUMER_SECRET=xxxxxxxxxxxxx
@@ -66,7 +68,7 @@ export TWITTER_TOKEN_SECRET=xxxxxxxxxxxxx
 \subsection*{Step 3: using the API}
 Ok, now we can get going. Open \texttt{twitter.js} in your favorite editor and start typing.
 
-We want to use the installed ntwitter module so we start by telling node that we require it. And then we configure it.
+We want to use the installed \texttt{ntwitter} module so we start by telling node that we require it. And then we configure it.
 
 \begin{lstlisting}[language=JavaScript]
 var twitter = require('ntwitter');
@@ -79,7 +81,7 @@ var twit = new twitter({
 });
 \end{lstlisting}
 
-\noindent Remember to test often so you can already run this program in your terminal. Nothing should happen.
+\noindent Remember to test often. You can already run this program in your terminal, nothing should happen.
 
 \noindent To execute a twitter query, we are going to write a function that asks twitter for statuses filtered by a keyword. If it receives a tweet, it will emmit a `data' event to which we subscribe. We get a parameter named `data' each time that event happens which is a structure with a lot of information about the tweet. We use the screen name and the actual content of the tweet.
 
@@ -117,7 +119,7 @@ If we want to create a nice website for this, we'll probably end up serving some
 
 \lstinputlisting[language=JavaScript]{code/lab/package.json.2}
 
-After that we can run npm again to install it:
+After that we can run \texttt{npm} again to install it:
 \begin{lstlisting}[language=bash]
 npm install
 \end{lstlisting}
@@ -144,11 +146,11 @@ touch pubic/index.html
 touch public/client.js
 \end{lstlisting}
 
-\noindent in that folder we can put all our static content like a HTML file:
+\noindent In that folder we can put all our static content like a HTML file:
 
-\lstinputlisting[language=HTML]{code/lab/public/index.html}
+\lstinputlisting[language=HTML]{code/lab/public/index.html.1}
 
-\noindent If we run this now we can see tweets in the terminal and if we visit the website we see a hello there page.
+\noindent If we run this now we can see tweets in the terminal and if we visit the website we see a \textbf{hello there} page.
 
 \subsection*{Step 5: Send new tweets to the browser}
 
@@ -158,12 +160,12 @@ Once again we'll need to add that module to our dependencies the \texttt{package
 
 \lstinputlisting[language=JavaScript]{code/lab/package.json}
 
-After that we can run npm once again to install it:
+After that we can run \texttt{npm} once again to install it:
 \begin{lstlisting}[language=bash]
 npm install
 \end{lstlisting}
 
-\noindent and edit the top of our \texttt{twitter.js} file to use socket.io:
+\noindent and edit the top of our \texttt{twitter.js} file to use \texttt{socket.io}:
 
 \begin{lstlisting}[language=JavaScript]
 var sio = require('socket.io');
