@@ -39,7 +39,7 @@ Node does I/O in a way that is asynchronous which lets it handle lots of differe
 
 Node is not a framework nor a programming language. Programs running on Node are written in JavaScript, the same JavaScript you can use on webpages except that it doesn't run in your browser but on a JavaScript engine. Therefore, you could call Node.js a platform.
 
-You can run Node on your Mac, PC or server, in the cloud at for example Nodejitsu and Heroku but also on a Raspberry Pi\footnote{for example to control a quadcopter}. 
+You can run Node on your Mac, PC or server, in the cloud at for example Nodejitsu and Heroku but also on a Raspberry Pi\footnote{for example to control a quadcopter}.
 
 \subsection*{The obligatory Hello World}
 
@@ -54,7 +54,7 @@ Node has small group of modules commonly called the `Node core' that you can use
 \begin{itemize}
 	\item \textbf{fs} for filesystem access
 	\item \textbf{http} webserver and client
-	\item \textbf{net} TCP 
+	\item \textbf{net} TCP
 	\item \textbf{dgram} UDP
 	\item \textbf{dns} DNS lookups
 	\item \textbf{os} Operating system specific information
@@ -63,13 +63,13 @@ Node has small group of modules commonly called the `Node core' that you can use
 	\item \textbf{path} Handling and transforming file paths
 \end{itemize}
 
-\noindent You can use these modules with the `require' clause like so: 
+\noindent You can use these modules with the `require' clause like so:
 \begin{lstlisting}
 var http=require('http');
 \end{lstlisting}
 
 \section*{Modules and NPM}
-A lot of functionality you might need is already written by other developers. If you are lucky, someone has made a module that does the thing you need. Node comes with its own module manager: NPM. 
+A lot of functionality you might need is already written by other developers. If you are lucky, someone has made a module that does the thing you need. Node comes with its own module manager: NPM.
 
 NPM can be used to search, install, remove, update packages and lots more. NPM avoids dependency conflicts between modules by nesting dependencies.
 
@@ -77,7 +77,7 @@ If you are looking for a twitter module you can search for twitter:
 \begin{lstlisting}[language=bash]
 npm search twitter
 \end{lstlisting}
-NPM will search the repository and returns a list of modules (if you search for `twitter' you get more then 200 results). If you want to install a module you can use the `install' command: 
+NPM will search the repository and returns a list of modules (if you search for `twitter' you get more then 200 results). If you want to install a module you can use the `install' command:
 \begin{lstlisting}[language=bash]
 npm install ntwitter
 \end{lstlisting}
@@ -106,7 +106,7 @@ var result = db.query("SELECT * FROM largeTable");
 doSomethingWithTheResult(result);
 console.log("We are done!");
 \end{lstlisting}
-\noindent It would take seconds before Node continues with the `console.log' code. Since Node runs only one proces, this becomes a global problem. If you would do this in a webserver and there would be multiple clients connected to the server, everyone would have to wait before the program continues. 
+\noindent It would take seconds before Node continues with the `console.log' code. Since Node runs only one proces, this becomes a global problem. If you would do this in a webserver and there would be multiple clients connected to the server, everyone would have to wait before the program continues.
 
 This is different from a language like PHP which runs on a webserver that starts a new process for each request.
 
@@ -121,16 +121,29 @@ db.query("SELECT * FROM largeTable", function(result) {
 console.log("query is running, but we don't have to wait...");
 \end{lstlisting}
 
-\noindent The callback is the anonymous function which is passed as an argument to the `query' function. It doesn't have to be an anonymous function, it can also be a normal function or a function reference as shown in the next two listings below.
+\noindent The callback is the anonymous function which is passed as the second argument to the `query' function. When `db.query' is done and has retrieved the results from the database, it will call this anonymous function and pass in the results.
+
+It doesn't have to be an anonymous function, it can also be a function reference as shown in the next two listings below.
 
 \begin{lstlisting}
 function myCallback(result) {
 	doSomethingWithTheResult(result);
 }
 
-db.query("SELECT * FROM largeTable", myCallback(result));
+db.query("SELECT * FROM largeTable", myCallback);
 console.log("query is running, but we don't have to wait...");
 \end{lstlisting}
+
+\begin{lstlisting}
+var myCallback = function(result) {
+	doSomethingWithTheResult(result);
+}
+
+db.query("SELECT * FROM largeTable", myCallback);
+console.log("query is running, but we don't have to wait...");
+\end{lstlisting}
+
+\noindent Note that the following is \emph{not} correct:
 
 \begin{lstlisting}
 var myCallback = function(result) {
@@ -141,11 +154,13 @@ db.query("SELECT * FROM largeTable", myCallback(result));
 console.log("query is running, but we don't have to wait...");
 \end{lstlisting}
 
+\noindent Here, instead of providing a function reference (that is, only the name of the function \emph{without} parantheses), we would already call the function `myCallback' before executing `db.query' and then pass the result that `myCallback' returns as a parameter `into db.query'. This is not what we want.
+
 \noindent Real working example of a callback:
 \lstinputlisting[language=JavaScript]{code/callbacks/callback.js}
 If you run this, the output will be:
 \begin{lstlisting}[language=css]
-$> node callback.js 
+$> node callback.js
 doing something usefull while waiting...
 nothing to see here...
 \end{lstlisting}
@@ -169,7 +184,7 @@ A much more complete list can by found at \href{https://github.com/joyent/node/w
 \section*{Examples and code snippets}
 
 \subsection*{Webserver}
-Node doesn't run on a webserver, instead you have to write your own! 
+Node doesn't run on a webserver, instead you have to write your own!
 
 The next example does exactly that. It creates a webserver using the \texttt{http} library, response to every request with \texttt{hello world} with a http 200 header.
 
@@ -233,7 +248,7 @@ node weather.js
 \end{lstlisting}
 
 \subsection*{Realtime goodness}
-I find it fun to connect API's together through Node. Especially with API's that push data realtime. There are a lot of API's and most of them work with REST interfaces that return JSON or XML. Each API differs in the way they work. Twitter has a nice one where you can subscribe on hashtags or coordinates. Instagram gives nice results too but I find their API a little bit cumbersome. 
+I find it fun to connect API's together through Node. Especially with API's that push data realtime. There are a lot of API's and most of them work with REST interfaces that return JSON or XML. Each API differs in the way they work. Twitter has a nice one where you can subscribe on hashtags or coordinates. Instagram gives nice results too but I find their API a little bit cumbersome.
 
 There are many more and I encourage you to try them out! Here are some (obvious) examples:
 
