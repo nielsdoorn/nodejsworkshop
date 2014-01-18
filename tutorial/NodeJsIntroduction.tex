@@ -24,302 +24,303 @@
 	\fancyfoot[L]{Niels Doorn \copyright~2014}
 	\fancyfoot[C]{}
 	\fancyfoot[R]{\thepage}
-	\renewcommand{\headrulewidth}{0pt}
-	\renewcommand{\footrulewidth}{0.4pt}
-}
-
-\begin{document}
-
-\chapter*{\textcolor{seccol}{Node.js} Introduction}
-
-\section*{What is Node.js?}
-Node.js, usually called Node, is an open source platform designed for building fast, scalable network applications using the Chrome JavaScript engine. You can use it to build I/O intensive applications that talk to networks, databases, file systems or other sources.
-
-Node does I/O in a way that is asynchronous which lets it handle lots of different things simultaneously.
-
-Node is not a framework nor a programming language. Programs running on Node are written in JavaScript, the same JavaScript you can use on webpages except that it doesn't run in your browser but on a JavaScript engine. Therefore, you could call Node.js a platform.
-
-You can run Node on your Mac, PC or server, in the cloud at for example Nodejitsu and Heroku but also on a Raspberry Pi\footnote{for example to control a quadcopter}.
-
-\subsection*{The obligatory Hello World}
-
-After you downloaded Node from \href{http://nodejs.org}{nodejs.org} and installed it on your computer your good to go. Create a new file \texttt{helloworld.js} (JavaScript files use the \texttt{.js} extension) with this content:
-
-\lstinputlisting[language=JavaScript]{code/helloworld/helloworld.js}
-
-\noindent Now run it on Node from a command prompt or terminal: \colorbox{codecol}{\lstinline[language=bash]{node helloworld.js}}
-
-\subsubsection*{Exercises}
-Create your very own `Hello World' node program!
-
-\section*{Core Modules}
-Node has small group of modules commonly called the `Node core' that you can use to write your programs with. Here are some but not all of them:
-\begin{itemize}
-	\item \textbf{fs} for filesystem access
-	\item \textbf{http} webserver and client
-	\item \textbf{net} TCP
-	\item \textbf{dgram} UDP
-	\item \textbf{dns} DNS lookups
-	\item \textbf{os} Operating system specific information
-	\item \textbf{buffer} Allocating binary chunks of memory
-	\item \textbf{url} Parsing URL's
-	\item \textbf{path} Handling and transforming file paths
-\end{itemize}
-
-\noindent You can use these modules with the `require' clause like so:
-\begin{lstlisting}
-var http=require('http');
-\end{lstlisting}
-
-\subsubsection*{Exercises}
-Create a program that displays the \textbf{hostname} and the \textbf{uptime} for your computer, using the `os' module.\\
-\\
-\noindent More information on the API of the OS module can be found here: \href{http://nodejs.org/api/os.html}{nodejs.org/api/os.html}.
-
-\section*{Modules and NPM}
+	\renewcommand{\headrulewidth}{0pt} 
+	\renewcommand{\footrulewidth}{0.4pt} 
+} 
+ 
+\begin{document} 
+ 
+\chapter*{\textcolor{seccol}{Node.js} Introduction} 
+ 
+\section*{What is Node.js?} 
+Node.js, usually called Node, is an open source platform designed for building fast, scalable network applications using the Chrome JavaScript engine. You can use it to build I/O intensive applications that talk to networks, databases, file systems or other sources. 
+ 
+Node does I/O in a way that is asynchronous which lets it handle lots of different things simultaneously. 
+ 
+Node is not a framework nor a programming language. Programs running on Node are written in JavaScript, the same JavaScript you can use on webpages except that it doesn't run in your browser but on a JavaScript engine. Therefore, you could call Node.js a platform. 
+ 
+You can run Node on your Mac, PC or server, in the cloud at for example Nodejitsu and Heroku but also on a Raspberry Pi\footnote{for example to control a quadcopter}. 
+ 
+\subsection*{The obligatory Hello World} 
+ 
+After you downloaded Node from \href{http://nodejs.org}{nodejs.org} and installed it on your computer your good to go. Create a new file \texttt{helloworld.js} (JavaScript files use the \texttt{.js} extension) with this content: 
+ 
+\lstinputlisting[language=JavaScript]{code/helloworld/helloworld.js} 
+ 
+\noindent Now run it on Node from a command prompt or terminal: \colorbox{codecol}{\lstinline[language=bash]{node helloworld.js}} 
+ 
+\subsubsection*{Exercises} 
+Create your very own `Hello World' node program! 
+ 
+\section*{Core Modules} 
+Node has small group of modules commonly called the `Node core' that you can use to write your programs with. Here are some but not all of them: 
+\begin{itemize} 
+	\item \textbf{fs} for filesystem access 
+	\item \textbf{http} webserver and client 
+	\item \textbf{net} TCP 
+	\item \textbf{dgram} UDP 
+	\item \textbf{dns} DNS lookups 
+	\item \textbf{os} Operating system specific information 
+	\item \textbf{buffer} Allocating binary chunks of memory 
+	\item \textbf{url} Parsing URL's 
+	\item \textbf{path} Handling and transforming file paths 
+\end{itemize} 
+ 
+\noindent You can use these modules with the `require' clause like so: 
+\begin{lstlisting} 
+var http=require('http'); 
+\end{lstlisting} 
+ 
+\subsubsection*{Exercises} 
+Create a program that displays the \textbf{hostname} and the \textbf{uptime} for your computer, using the `os' module.\\ 
+\\ 
+\noindent More information on the API of the OS module can be found here: \href{http://nodejs.org/api/os.html}{nodejs.org/api/os.html}. 
+ 
+\section*{Modules and NPM} 
 A lot of functionality you might need is already written by other developers. If you are lucky, someone has made a module that does the thing you need.
-
-Node comes with its own module manager, the Node Package Manager (NPM). NPM can be used to search, install, remove, update packages and lots more. NPM avoids dependency conflicts between modules by nesting dependencies.
-
-If you are looking for a twitter module you can search for twitter:
-\begin{lstlisting}[language=bash]
-npm search twitter
+ 
+Node comes with its own module manager, the Node Package Manager (NPM). NPM can be used to search, install, remove, update packages and lots more. NPM avoids dependency conflicts between modules by nesting dependencies. 
+ 
+If you are looking for a twitter module you can search for twitter: 
+\begin{lstlisting}[language=bash] 
+npm search twitter 
+\end{lstlisting} 
+NPM will search the repository and returns a list of modules (if you search for `twitter' you get more then 200 results). If you want to install a module you can use the `install' command: 
+\begin{lstlisting}[language=bash] 
+npm install ntwitter 
+\end{lstlisting} 
+If you write programs in Node that depend on modules, it is a good idea to include a \texttt{package.json} file that lists the dependencies. Below is an example, but you can add lots more information: 
+\begin{lstlisting} 
+{ 
+  "name": "CoolnessApp", 
+  "version": "0.0.1", 
+  "dependencies": { 
+    "node-static": "0.6.x", 
+    "socket.io": "0.9.x" 
+  } 
+} 
+\end{lstlisting} 
+ 
+\noindent With a package.json fill you can install all dependencies by running: 
+\begin{lstlisting}[language=bash] 
+npm install 
+\end{lstlisting} 
+\noindent and npm will install all required modules and their dependencies. 
+ 
+\subsubsection*{Exercises} 
+\begin{itemize} 
+	\item Search for modules that can provide functions for `instagram' integration. 
+	\item Can you get more information about one of those modules? 
+	\item Install one of the modules. 
+	\item Create a \texttt{package.json} file with a dependency for a module and install all dependencies. 
+\end{itemize} 
+ 
+\section*{Some details on Callbacks} 
+Callbacks are an important concept in Node. Since Node is a asynchronous platform, it won't wait for asynchronous operations to complete before continuing the execution of the program. So if, for example, you want to query a really slow database and it would take seconds to complete, you could write something like this:\footnote{This code is just an example to understand node's behavior, not a example on how to work with databases.} 
+\begin{lstlisting} 
+var result = db.query("SELECT * FROM largeTable"); 
+doSomethingWithTheResult(result); 
+console.log("We are done!"); 
 \end{lstlisting}
-NPM will search the repository and returns a list of modules (if you search for `twitter' you get more then 200 results). If you want to install a module you can use the `install' command:
-\begin{lstlisting}[language=bash]
-npm install ntwitter
-\end{lstlisting}
-If you write programs in Node that depend on modules, it is a good idea to include a \texttt{package.json} file that lists the dependencies. Below is an example, but you can add lots more information:
-\begin{lstlisting}
-{
-  "name": "CoolnessApp",
-  "version": "0.0.1",
-  "dependencies": {
-    "node-static": "0.6.x",
-    "socket.io": "0.9.x"
-  }
-}
-\end{lstlisting}
-
-\noindent With a package.json fill you can install all dependencies by running:
-\begin{lstlisting}[language=bash]
-npm install
-\end{lstlisting}
-\noindent and npm will install all required modules and their dependencies.
-
-\subsubsection*{Exercises}
-\begin{itemize}
-	\item Search for modules that can provide functions for `instagram' integration.
-	\item Can you get more information about one of those modules?
-	\item Install one of the modules.
-	\item Create a \texttt{package.json} file with a dependency for a module and install all dependencies.
-\end{itemize}
-
-\section*{Some details on Callbacks}
-Callbacks are an important concept in Node. Since Node is a asynchronous platform, it won't wait for asynchronous operations to complete before continuing the execution of the program. So if, for example, you want to query a really slow database and it would take seconds to complete, you could write something like this:\footnote{This code is just an example to understand node's behavior, not a example on how to work with databases.}
-\begin{lstlisting}
-var result = db.query("SELECT * FROM largeTable");
-doSomethingWithTheResult(result);
-console.log("We are done!");
-\end{lstlisting}
-\noindent It would take seconds before Node continues with the `console.log' code. Since Node runs only \textbf{one} proces, this becomes a global problem. If you would do this in a webserver and there would be multiple clients connected to the server, everyone would have to wait before the program continues. 
-
-This is different from a language like PHP which runs on a webserver that starts a new process for each request.
-
-You can avoid this problem by using callbacks. Callbacks are references to functions that can be executed at a later time, for example when the database query is complete. 
-
-With a callback, you know what \textbf{will} be executed, but not \textbf{when}.
-
-This way, the program continues while the query is running. When the query finishes, the callback is executed, as the following code shows:
-
-\begin{lstlisting}
-db.query("SELECT * FROM largeTable", function(result) {
-	doSomethingWithTheResult(result);
-});
-console.log("query is running, but we don't have to wait...");
-\end{lstlisting}
-
-\noindent The callback is the anonymous function which is passed as the second argument to the `query' function. When `db.query' is done and has retrieved the results from the database, it will call this anonymous function and pass in the results.
-
-It doesn't have to be an anonymous function, it can also be a function reference as shown in the next two listings below.
-
-\begin{lstlisting}
-function myCallback(result) {
-	doSomethingWithTheResult(result);
-}
-
-db.query("SELECT * FROM largeTable", myCallback);
-console.log("query is running, but we don't have to wait...");
-\end{lstlisting}
-
-\begin{lstlisting}
-var myCallback = function(result) {
-	doSomethingWithTheResult(result);
-}
-
-db.query("SELECT * FROM largeTable", myCallback);
-console.log("query is running, but we don't have to wait...");
-\end{lstlisting}
-
-\noindent Note that the following is \emph{not} correct:
-
-\begin{lstlisting}
-var myCallback = function(result) {
-	doSomethingWithTheResult(result);
-}
-
+\noindent It would take seconds before Node continues with the `console.log' code. Since Node runs only \textbf{one} proces, this becomes a global problem. If you would do this in a webserver and there would be multiple clients connected to the server, everyone would have to wait before the program continues.  
+ 
+This is different from a language like PHP which runs on a webserver that starts a new process for each request. 
+ 
+You can avoid this problem by using callbacks. Callbacks are references to functions that can be executed at a later time, for example when the database query is complete.  
+ 
+With a callback, you know what \textbf{will} be executed, but not \textbf{when}. 
+ 
+This way, the program continues while the query is running. When the query finishes, the callback is executed, as the following code shows: 
+ 
+\begin{lstlisting} 
+db.query("SELECT * FROM largeTable", function(result) { 
+	doSomethingWithTheResult(result); 
+}); 
+console.log("query is running, but we don't have to wait..."); 
+\end{lstlisting} 
+ 
+\noindent The callback is the anonymous function which is passed as the second argument to the `query' function. When `db.query' is done and has retrieved the results from the database, it will call this anonymous function and pass in the results. 
+ 
+It doesn't have to be an anonymous function, it can also be a function reference as shown in the next two listings below. 
+ 
+\begin{lstlisting} 
+function myCallback(result) { 
+	doSomethingWithTheResult(result); 
+} 
+ 
+db.query("SELECT * FROM largeTable", myCallback); 
+console.log("query is running, but we don't have to wait..."); 
+\end{lstlisting} 
+ 
+\begin{lstlisting} 
+var myCallback = function(result) { 
+	doSomethingWithTheResult(result); 
+} 
+ 
+db.query("SELECT * FROM largeTable", myCallback); 
+console.log("query is running, but we don't have to wait..."); 
+\end{lstlisting} 
+ 
+\noindent Note that the following is \emph{not} correct: 
+ 
+\begin{lstlisting} 
+var myCallback = function(result) { 
+	doSomethingWithTheResult(result); 
+} 
+ 
 db.query("SELECT * FROM largeTable", myCallback(result));
-console.log("query is running, but we don't have to wait...");
-\end{lstlisting}
-
-\noindent Here, instead of providing a function reference (that is, only the name of the function \emph{without} parantheses), we would already call the function `myCallback' before executing `db.query' and then pass the result that `myCallback' returns as a parameter `into db.query'. This is not what we want.
-
-\noindent Real working example of a callback:
-\lstinputlisting[language=JavaScript]{code/callbacks/callback.js}
-If you run this, the output will be:
-\begin{lstlisting}[language=css]
+console.log("query is running, but we don't have to wait..."); 
+\end{lstlisting} 
+ 
+\noindent Here, instead of providing a function reference (that is, only the name of the function \emph{without} parantheses), we would already call the function `myCallback' before executing `db.query' and then pass the result that `myCallback' returns as a parameter `into db.query'. This is not what we want. 
+ 
+\noindent Real working example of a callback: 
+\lstinputlisting[language=JavaScript]{code/callbacks/callback.js} 
+If you run this, the output will be: 
+\begin{lstlisting}[language=css] 
 node callback.js
-doing something usefull while waiting...
-nothing to see here...
-\end{lstlisting}
-
-\subsubsection*{Exercises}
-\begin{itemize}
-	\item Create a program that lists all the files in a directory using \texttt{fs.readdir}\footnote{\url{http://nodejs.org/docs/latest/api/fs.html}} with \texttt{console.log}.
-	\item Use a seperate function as a callback.
-\end{itemize}
-
-\section*{Events}
-One of the reason Node has such a good performance is because a lot of code is based on events. Events work based on the publish/subscribe design pattern. If you are interested in an event, for example if someone connects to your server, you subscribe to that event and each time the event occurs, your code is called.
-
-\lstinputlisting[language=JavaScript]{code/events/events.js}
-
-\noindent It is also possible to generate custom events using event emitters. If you want your object to emit events you'll have to inherit from EventEmitter. The following code gives a basic example.
-
-\lstinputlisting[language=JavaScript]{code/events/eventsEmitter.js}
-
-\section*{Usefull examples and code snippets}
-
-\subsection*{Webserver}
-Node doesn't run on a webserver, instead you have to write your own!
-
-The next example does exactly that. It creates a webserver using the \texttt{http} library, response to every request with \texttt{hello world} with a http 200 header.
-
-\lstinputlisting[language=JavaScript]{code/webserver/webserver.js}
-
-\noindent If you want to handle requests to different URL's in different ways, you'll need to route those requests to different parts of code. Now, that is out of scope for this workshop, but the node beginners book \footnote{\url{http://www.nodebeginner.org/}} has a nice example of how you can do this.
-
-\subsubsection*{Exercises}
-Create a webserver, serving a message in your browser.
-
-\subsection*{Serving static web content}
-Most often you want to serve some static content like HTML, CSS, JavaScript files and images to the visitor of your website. It would be painful to handle all those request hardcoded in your program. It is much better to use a static server for those requests. This can be done with a module called `Node-static':\\
-\\
-\noindent Install node static using npm:
-\begin{lstlisting}[language=bash]
-npm install node-static
-\end{lstlisting}
-\noindent\ The webserver itself is programmed in the file \texttt{server.js} like this:
-\lstinputlisting[language=JavaScript]{code/staticContent/server.js}
-
-\noindent Now you can put HTML files like \texttt{Index.html} in the public folder:
-\lstinputlisting[language=HTML]{code/staticContent/public/index.html}
-
-\noindent And of course you can do the same with CSS files like \texttt{style.css}:
-\lstinputlisting[language=CSS]{code/staticContent/public/style.css}
-
-\subsubsection*{Exercises}
-Create a webserver, serving a complete webpage with HTML, CSS and client side JavaScript.
-
-\subsection*{Socket I/O Events}
-Creating realtime connectivity between your program and a browser can be done using a module called socket.io. There are others, but I don't have enough time right now to check them all out. Socket.io automatically tries to use the best way to communicate with your browser. If your browser supports websockets, it will use websockets. Otherwise it will use Flash sockets, Ajax long polling, Ajax multipart streaming, a forever Iframe or JSONP polling.
-
-As programmers, we don't have to worry about that very much. Listening for and sending events between browser and server is for both the server and the client done in JavaScript so sometimes, when you are really concentrated and you are switching back and forth between server code and client code you'll forget what you are doing (in my experience). But the nice thing about it is that you don't have to switch between programming languages all the time.
-
-First listing is the node server (\texttt{code/socketIO/server.js}):
-\lstinputlisting{code/socketIO/server.js}
-
-\noindent Second one is the client (\texttt{code/socketIO/public/client.js}):
-\lstinputlisting{code/socketIO/public/client.js}
-
-\noindent And the HTML to tie them together (\texttt{code/socketIO/public/index.html}) (notice the script tag for the socket.io library):
-\lstinputlisting[language=HTML]{code/socketIO/public/index.html}
-
-\subsection*{Weather API}
-\href{http://forecast.io/}{Forecast.io} is a weather site that provides (global) weather, but they also have a developers API. To use this API you need to register at \href{https://developer.forecast.io/}{developer.forecast.io} and then you'll get an API key and a thousand free requests to their API a day.
-
-The API can be queried using a REST interface and returns results in JSON format. There is a Node module that provides a wrapper around this interface.
-
-In the code folder there is a working example that uses that module. Don't forget to run \colorbox{codecol}{\lstinline[language=bash]{npm install}} before you run it.
-\\
-\\
-\noindent To avoid hardcoding the API key in the code we use the environment to set it, in Mac/OS and Linux this can be done in the terminal like so:\footnote{In Windows you'll have to do complicated things with system settings (right click on `My Computer', `select properties', open the `advanced' tab, select `Environmental variables', choose new, enter a name `FORECAST\_API\_KEY' and a value: your API key).}
-\begin{lstlisting}[language=bash]
-export FORECAST_API_KEY=dd987b047af59deaed4a2e2f55d21a0
-\end{lstlisting}
-
-\noindent This is a good practice for all API keys you might need, especially if you want to use different keys in development and production or if you want to share your code online.
-
-\noindent Then we can start using the forecast.io API for example by asking the weather for a specific location. In the next example the weather is requested and the summary is retrieved from the response.
-
-\lstinputlisting[language=JavaScript]{code/weather/weather.js}
-
-\noindent If you run this, it will show the weather forecast summary for the specified location (coordinates).
-
-\begin{lstlisting}[language=bash]
-node weather.js
-\end{lstlisting}
-
-\subsubsection*{Exercises}
-\begin{itemize}
-	\item Create the weather application as shown above.
-	\item Make sure to use an environmental variable for the API key.
-	\item Show the weather forecast for your favourite holiday destination.
-\end{itemize}
-
-\subsection*{Realtime goodness}
-I find it fun to connect API's together through Node. Especially with API's that push data realtime. There are a lot of API's and most of them work with REST interfaces that return JSON or XML. Each API differs in the way they work. Twitter has a nice one where you can subscribe on hashtags or coordinates. Instagram gives nice results too but I find their API a little bit cumbersome.
-
-There are many more and I encourage you to try them out! Here are some (obvious) examples:
-
-\begin{itemize}
-	\item twitter hashtag subscription (will do this in the lab)
-	\item lastfm search
-	\item instagram integration (example in code folder, NB. only works online)
-	\item foursquare \href{https://developer.foursquare.com/overview/realtime}{https://developer.foursquare.com/overview/realtime}
-	\item Collection of (realtime) API's: \href{http://www.programmableweb.com/}{programmableweb.com}
-\end{itemize}
-
-\section*{Hosting a Node.js app}
-Of course, once you have written something cool you want the world to see it. There are several options for doing this.
-
-Hosting can be done in the cloud at \href{https://www.nodejitsu.com/}{Nodejitsu}, free for the thirty days, and at \href{https://www.heroku.com/}{Heroku}, free for one node. Both are easy to work with once you get the hang of it.
-
-A much more complete list can by found at \href{https://github.com/joyent/node/wiki/Node-Hosting}{Ryan Dahl's list of Node hosting options}.
-
-\subsubsection*{Exercise (optional)}
-Create a node.js program running on Heroku\footnote{\url{http://heroku.com}}, Nodejitsu\footnote{\url{https://www.nodejitsu.com/}} or any other cloud platform.
-
-\section*{More information}
-\begin{itemize}
-	\item Node.js homepage: \href{http://nodejs.org}{nodejs.org}
-	\item Node Packaged Modules: \href{https://npmjs.org/}{npmjs.org}
-	\item Nodemon, a module that monitors changes in your code \href{https://github.com/remy/nodemon}{github.com/remy/nodemon}
-	\item Socket.IO: \href{http://socket.io/}{socket.io}
-	\item The art of node: \href{https://github.com/maxogden/art-of-node}{github.com/maxogden/art-of-node}
-	\item Streams: \href{https://github.com/substack/stream-handbook}{github.com/substack/stream-handbook}
-	\item Node and Express: \href{http://ericleads.com/2013/05/getting-started-with-node-and-express/}{ericleads.com/2013/05/getting-started-with-node-and-express}
-	\item Node and MongoDB \href{http://blog.mongohq.com/node-js-mongodb-and-you-an-intro-in-parts/}{mongohq.com}
-	\item Heroku: \href{https://www.heroku.com/}{heroku.com}
-	\item Nodejitsu: \href{https://www.nodejitsu.com/}{nodejitsu.com}
-	\item List of hosting options: \href{https://github.com/joyent/node/wiki/Node-Hosting}{github.com/joyent/node/wiki/Node-Hosting}
-	\item The Node beginner Book: \href{http://www.nodebeginner.org/}{nodebeginner.org}
-	\item Uit in Enschede REST API (Dutch): \href{http://www.uitinenschede.nl/api/json/?page=index}{uitinenschede.nl/api/json}
-	\item Organisations that use node: \href{https://github.com/joyent/node/wiki/Projects,-Applications,-and-Companies-Using-Node}{github.com/joyent/node/wiki/Projects,-Applications,-and-Companies-Using-Node}
-\end{itemize}
-
-%\begin{center}
-%\resizebox{110mm}{!}{\includegraphics{images/nodejs-light.eps}}
-%\end{center}
-
-\end{document}
+doing something usefull while waiting... 
+nothing to see here... 
+\end{lstlisting} 
+ 
+\subsubsection*{Exercises} 
+\begin{itemize} 
+	\item Create a program that lists all the files in a directory using \texttt{fs.readdir}\footnote{\url{http://nodejs.org/docs/latest/api/fs.html}} with \texttt{console.log}. 
+	\item Use a seperate function as a callback. 
+\end{itemize} 
+ 
+\section*{Events} 
+One of the reason Node has such a good performance is because a lot of code is based on events. Events work based on the publish/subscribe design pattern. If you are interested in an event, for example if someone connects to your server, you subscribe to that event and each time the event occurs, your code is called. 
+ 
+\lstinputlisting[language=JavaScript]{code/events/events.js} 
+ 
+\noindent It is also possible to generate custom events using event emitters. If you want your object to emit events you'll have to inherit from EventEmitter. The following code gives a basic example. 
+ 
+\lstinputlisting[language=JavaScript]{code/events/eventsEmitter.js} 
+ 
+\section*{Usefull examples and code snippets} 
+ 
+\subsection*{Webserver} 
+Node doesn't run on a webserver, instead you have to write your own! 
+ 
+The next example does exactly that. It creates a webserver using the \texttt{http} library, response to every request with \texttt{hello world} with a http 200 header. 
+ 
+\lstinputlisting[language=JavaScript]{code/webserver/webserver.js} 
+ 
+\noindent If you want to handle requests to different URL's in different ways, you'll need to route those requests to different parts of code. Now, that is out of scope for this workshop, but the node beginners book \footnote{\url{http://www.nodebeginner.org/}} has a nice example of how you can do this. 
+ 
+\subsubsection*{Exercises} 
+Create a webserver, serving a message in your browser. 
+ 
+\subsection*{Serving static web content} 
+Most often you want to serve some static content like HTML, CSS, JavaScript files and images to the visitor of your website. It would be painful to handle all those request hardcoded in your program. It is much better to use a static server for those requests. This can be done with a module called `Node-static':\\ 
+\\ 
+\noindent Install node static using npm: 
+\begin{lstlisting}[language=bash] 
+npm install node-static 
+\end{lstlisting} 
+\noindent\ The webserver itself is programmed in the file \texttt{server.js} like this: 
+\lstinputlisting[language=JavaScript]{code/staticContent/server.js} 
+ 
+\noindent Now you can put HTML files like \texttt{Index.html} in the public folder: 
+\lstinputlisting[language=HTML]{code/staticContent/public/index.html} 
+ 
+\noindent And of course you can do the same with CSS files like \texttt{style.css}: 
+\lstinputlisting[language=CSS]{code/staticContent/public/style.css} 
+ 
+\subsubsection*{Exercises} 
+Create a webserver, serving a complete webpage with HTML, CSS and client side JavaScript. 
+ 
+\subsection*{Socket I/O Events} 
+Creating realtime connectivity between your program and a browser can be done using a module called socket.io. There are others, but I don't have enough time right now to check them all out. Socket.io automatically tries to use the best way to communicate with your browser. If your browser supports websockets, it will use websockets. Otherwise it will use Flash sockets, Ajax long polling, Ajax multipart streaming, a forever Iframe or JSONP polling. 
+ 
+As programmers, we don't have to worry about that very much. Listening for and sending events between browser and server is for both the server and the client done in JavaScript so sometimes, when you are really concentrated and you are switching back and forth between server code and client code you'll forget what you are doing (in my experience). But the nice thing about it is that you don't have to switch between programming languages all the time. 
+ 
+First listing is the node server (\texttt{code/socketIO/server.js}): 
+\lstinputlisting{code/socketIO/server.js} 
+ 
+\noindent Second one is the client (\texttt{code/socketIO/public/client.js}): 
+\lstinputlisting{code/socketIO/public/client.js} 
+ 
+\noindent And the HTML to tie them together (\texttt{code/socketIO/public/index.html}) (notice the script tag for the socket.io library): 
+\lstinputlisting[language=HTML]{code/socketIO/public/index.html} 
+ 
+\subsection*{Weather API} 
+\href{http://forecast.io/}{Forecast.io} is a weather site that provides (global) weather, but they also have a developers API. To use this API you need to register at \href{https://developer.forecast.io/}{developer.forecast.io} and then you'll get an API key and a thousand free requests to their API a day. 
+ 
+The API can be queried using a REST interface and returns results in JSON format. There is a Node module that provides a wrapper around this interface. 
+ 
+In the code folder there is a working example that uses that module. Don't forget to run \colorbox{codecol}{\lstinline[language=bash]{npm install}} before you run it. 
+\\ 
+\\ 
+\noindent To avoid hardcoding the API key in the code we use the environment to set it, in Mac/OS and Linux this can be done in the terminal like so:\footnote{In Windows you'll have to do complicated things with system settings (right click on `My Computer', `select properties', open the `advanced' tab, select `Environmental variables', choose new, enter a name `FORECAST\_API\_KEY' and a value: your API key).} 
+\begin{lstlisting}[language=bash] 
+export FORECAST_API_KEY=dd987b047af59deaed4a2e2f55d21a0 
+\end{lstlisting} 
+ 
+\noindent This is a good practice for all API keys you might need, especially if you want to use different keys in development and production or if you want to share your code online. 
+ 
+\noindent Then we can start using the forecast.io API for example by asking the weather for a specific location. In the next example the weather is requested and the summary is retrieved from the response. 
+ 
+\lstinputlisting[language=JavaScript]{code/weather/weather.js} 
+ 
+\noindent If you run this, it will show the weather forecast summary for the specified location (coordinates). 
+ 
+\begin{lstlisting}[language=bash] 
+node weather.js 
+\end{lstlisting} 
+ 
+\subsubsection*{Exercises} 
+\begin{itemize} 
+	\item Create the weather application as shown above. 
+	\item Make sure to use an environmental variable for the API key. 
+	\item Show the weather forecast for your favourite holiday destination. 
+\end{itemize} 
+ 
+\subsection*{Realtime goodness} 
+I find it fun to connect API's together through Node. Especially with API's that push data realtime. There are a lot of API's and most of them work with REST interfaces that return JSON or XML. Each API differs in the way they work. Twitter has a nice one where you can subscribe on hashtags or coordinates. Instagram gives nice results too but I find their API a little bit cumbersome. 
+ 
+There are many more and I encourage you to try them out! Here are some (obvious) examples: 
+ 
+\begin{itemize} 
+	\item twitter hashtag subscription (will do this in the lab) 
+	\item lastfm search 
+	\item instagram integration (example in code folder, NB. only works online) 
+	\item foursquare \href{https://developer.foursquare.com/overview/realtime}{https://developer.foursquare.com/overview/realtime} 
+	\item Collection of (realtime) API's: \href{http://www.programmableweb.com/}{programmableweb.com} 
+\end{itemize} 
+ 
+\section*{Hosting a Node.js app} 
+Of course, once you have written something cool you want the world to see it. There are several options for doing this. 
+ 
+Hosting can be done in the cloud at \href{https://www.nodejitsu.com/}{Nodejitsu}, free for the thirty days, and at \href{https://www.heroku.com/}{Heroku}, free for one node. Both are easy to work with once you get the hang of it. 
+ 
+A much more complete list can by found at \href{https://github.com/joyent/node/wiki/Node-Hosting}{Ryan Dahl's list of Node hosting options}. 
+ 
+\subsubsection*{Exercise (optional)} 
+Create a node.js program running on Heroku\footnote{\url{http://heroku.com}}, Nodejitsu\footnote{\url{https://www.nodejitsu.com/}} or any other cloud platform. 
+ 
+\section*{More information} 
+\begin{itemize} 
+	\item Node.js homepage: \href{http://nodejs.org}{nodejs.org} 
+	\item Node Packaged Modules: \href{https://npmjs.org/}{npmjs.org} 
+	\item Debugging: \href{https://github.com/node-inspector/node-inspector}{github.com/node-inspector/node-inspector}
+	\item Nodemon, a module that monitors changes in your code \href{https://github.com/remy/nodemon}{github.com/remy/nodemon} 
+	\item Socket.IO: \href{http://socket.io/}{socket.io} 
+	\item The art of node: \href{https://github.com/maxogden/art-of-node}{github.com/maxogden/art-of-node} 
+	\item Streams: \href{https://github.com/substack/stream-handbook}{github.com/substack/stream-handbook} 
+	\item Node and Express: \href{http://ericleads.com/2013/05/getting-started-with-node-and-express/}{ericleads.com/2013/05/getting-started-with-node-and-express} 
+	\item Node and MongoDB \href{http://blog.mongohq.com/node-js-mongodb-and-you-an-intro-in-parts/}{mongohq.com} 
+	\item Heroku: \href{https://www.heroku.com/}{heroku.com} 
+	\item Nodejitsu: \href{https://www.nodejitsu.com/}{nodejitsu.com} 
+	\item List of hosting options: \href{https://github.com/joyent/node/wiki/Node-Hosting}{github.com/joyent/node/wiki/Node-Hosting} 
+	\item The Node beginner Book: \href{http://www.nodebeginner.org/}{nodebeginner.org} 
+	\item Uit in Enschede REST API (Dutch): \href{http://www.uitinenschede.nl/api/json/?page=index}{uitinenschede.nl/api/json} 
+	\item Organisations that use node: \href{https://github.com/joyent/node/wiki/Projects,-Applications,-and-Companies-Using-Node}{github.com/joyent/node/wiki/Projects,-Applications,-and-Companies-Using-Node} 
+\end{itemize} 
+ 
+%\begin{center} 
+%\resizebox{110mm}{!}{\includegraphics{images/nodejs-light.eps}} 
+%\end{center} 
+ 
+\end{document} 
