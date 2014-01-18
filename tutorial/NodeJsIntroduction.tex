@@ -77,11 +77,7 @@ Create a program that displays the \textbf{hostname} and the \textbf{uptime} for
 \noindent More information on the API of the OS module can be found here: \href{http://nodejs.org/api/os.html}{nodejs.org/api/os.html}.
 
 \section*{Modules and NPM}
-<<<<<<< HEAD
-A lot of functionality you might need is already written by other developers. If you are lucky, someone has made a module that does the thing you need. 
-=======
-A lot of functionality you might need is already written by other developers. If you are lucky, someone has made a module that does the thing you need. Node comes with its own module manager: NPM.
->>>>>>> 27d1965087826a57d32b1ceb3a2744cf3856522d
+A lot of functionality you might need is already written by other developers. If you are lucky, someone has made a module that does the thing you need.
 
 Node comes with its own module manager, the Node Package Manager (NPM). NPM can be used to search, install, remove, update packages and lots more. NPM avoids dependency conflicts between modules by nesting dependencies.
 
@@ -126,11 +122,7 @@ var result = db.query("SELECT * FROM largeTable");
 doSomethingWithTheResult(result);
 console.log("We are done!");
 \end{lstlisting}
-<<<<<<< HEAD
 \noindent It would take seconds before Node continues with the `console.log' code. Since Node runs only \textbf{one} proces, this becomes a global problem. If you would do this in a webserver and there would be multiple clients connected to the server, everyone would have to wait before the program continues. 
-=======
-\noindent It would take seconds before Node continues with the `console.log' code. Since Node runs only one proces, this becomes a global problem. If you would do this in a webserver and there would be multiple clients connected to the server, everyone would have to wait before the program continues.
->>>>>>> 27d1965087826a57d32b1ceb3a2744cf3856522d
 
 This is different from a language like PHP which runs on a webserver that starts a new process for each request.
 
@@ -156,10 +148,6 @@ function myCallback(result) {
 	doSomethingWithTheResult(result);
 }
 
-<<<<<<< HEAD
-db.query("SELECT * FROM largeTable", myCallback(result));
-
-=======
 db.query("SELECT * FROM largeTable", myCallback);
 console.log("query is running, but we don't have to wait...");
 \end{lstlisting}
@@ -181,7 +169,6 @@ var myCallback = function(result) {
 }
 
 db.query("SELECT * FROM largeTable", myCallback(result));
->>>>>>> 27d1965087826a57d32b1ceb3a2744cf3856522d
 console.log("query is running, but we don't have to wait...");
 \end{lstlisting}
 
@@ -191,11 +178,7 @@ console.log("query is running, but we don't have to wait...");
 \lstinputlisting[language=JavaScript]{code/callbacks/callback.js}
 If you run this, the output will be:
 \begin{lstlisting}[language=css]
-<<<<<<< HEAD
-node callback.js 
-=======
-$> node callback.js
->>>>>>> 27d1965087826a57d32b1ceb3a2744cf3856522d
+node callback.js
 doing something usefull while waiting...
 nothing to see here...
 \end{lstlisting}
