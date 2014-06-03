@@ -116,9 +116,12 @@ npm install
 \end{itemize} 
  
 \section*{Some details on Callbacks} 
-Callbacks are an important concept in Node. Since Node is a asynchronous platform, it won't wait for asynchronous operations to complete before continuing the execution of the program. So if, for example, you want to query a really slow database and it would take seconds to complete, you could write something like this:\footnote{This code is just an example to understand node's behavior, not a example on how to work with databases.} 
+Callbacks are an important concept in Node. Since Node is a asynchronous platform, it won't wait for asynchronous operations to complete before continuing the execution of the program. So if, for example, you want to read a really big file and it would take seconds to complete, you could write something like this:
+
+Create a file named \texttt{textfile.txt} in the folder that you're working. Put some arbitrary text into it.
+
 \begin{lstlisting} 
-var result = db.query("SELECT * FROM largeTable"); 
+var result = fs.readFileStatic("textfile.txt");
 doSomethingWithTheResult(result); 
 console.log("We are done!"); 
 \end{lstlisting}
@@ -133,55 +136,56 @@ With a callback, you know what \textbf{will} be executed, but not \textbf{when}.
 This way, the program continues while the query is running. When the query finishes, the callback is executed, as the following code shows: 
  
 \begin{lstlisting} 
-db.query("SELECT * FROM largeTable", function(result) { 
-	doSomethingWithTheResult(result); 
-}); 
-console.log("query is running, but we don't have to wait..."); 
+var fs = require("fs");
+fs.readFile("textfile.txt", function(err, result) {
+  console.log("we've read the file \n", result);
+});
+console.log("node is reading the file, but we don’t have to wait...");
+\end{lstlisting} 
+
+If you run this, the output will be: 
+\begin{lstlisting}[language=css] 
+node callback.js
+node is reading the file, but we don’t have to wait...
+we've read the file
+[text content]
 \end{lstlisting} 
  
-\noindent The callback is the anonymous function which is passed as the second argument to the `query' function. When `db.query' is done and has retrieved the results from the database, it will call this anonymous function and pass in the results. 
+ 
+\noindent The callback is the anonymous function which is passed as the second argument to the `readFile' function. When `fs.readFile' is done and has retrieved the file, it will call this anonymous function and pass in the results. 
  
 It doesn't have to be an anonymous function, it can also be a function reference as shown in the next two listings below. 
  
 \begin{lstlisting} 
-function myCallback(result) { 
-	doSomethingWithTheResult(result); 
-} 
- 
-db.query("SELECT * FROM largeTable", myCallback); 
-console.log("query is running, but we don't have to wait..."); 
+function printFile(err, result) {
+  console.log("we've read the file \n", result);
+}
+var fs = require("fs");
+fs.readFile("textfile.txt", printFile);
+console.log("node is reading the file, but we don’t have to wait...");
 \end{lstlisting} 
  
 \begin{lstlisting} 
-var myCallback = function(result) { 
-	doSomethingWithTheResult(result); 
-} 
- 
-db.query("SELECT * FROM largeTable", myCallback); 
-console.log("query is running, but we don't have to wait..."); 
+var printFile = function (err, result) {
+  console.log("we've read the file \n", result);
+}
+var fs = require("fs");
+fs.readFile("textfile.txt", printFile);
+console.log("node is reading the file, but we don’t have to wait...");
 \end{lstlisting} 
  
 \noindent Note that the following is \emph{not} correct: 
  
 \begin{lstlisting} 
-var myCallback = function(result) { 
-	doSomethingWithTheResult(result); 
-} 
- 
-db.query("SELECT * FROM largeTable", myCallback(result));
-console.log("query is running, but we don't have to wait..."); 
+var printFile = function (err, result) {
+  console.log("we've read the file \n", result);
+}
+var fs = require("fs");
+fs.readFile("textfile.txt", printFile(result));
+console.log("node is reading the file, but we don’t have to wait...");
 \end{lstlisting} 
  
-\noindent Here, instead of providing a function reference (that is, only the name of the function \emph{without} parantheses), we would already call the function `myCallback' before executing `db.query' and then pass the result that `myCallback' returns as a parameter `into db.query'. This is not what we want. 
- 
-\noindent Real working example of a callback: 
-\lstinputlisting[language=JavaScript]{code/callbacks/callback.js} 
-If you run this, the output will be: 
-\begin{lstlisting}[language=css] 
-node callback.js
-doing something usefull while waiting... 
-nothing to see here... 
-\end{lstlisting} 
+\noindent Here, instead of providing a function reference (that is, only the name of the function \emph{without} parentheses), we would already call the function `printFile' before executing `fs.readFile' and then pass the result that `printFile' returns as a parameter `into fs.readFile'. This is not what we want. 
  
 \subsubsection*{Exercises} 
 \begin{itemize} 
