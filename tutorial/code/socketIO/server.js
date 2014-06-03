@@ -15,10 +15,10 @@ function handler(req, res) {
   file.serve(req, res);
 }
 
-io.sockets.on('connection', function (socket) {
+io.on('connection', function (socket) {
   // user connected, send him the time
   var now = new Date().toDateString();
-  io.sockets.emit('news', {hello: 'world', time: now});
+  io.emit('news', {hello: 'world', time: now});
 
   // handle incoming event
   socket.on('press', function (data) {
