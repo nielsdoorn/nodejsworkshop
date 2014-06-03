@@ -1,18 +1,20 @@
 var http = require('http');
 var path = require('path');
 var static = require('node-static');
-var sio = require('socket.io');
 
 // http server
 var app = http.createServer(handler);
+
+// socket I/O
+var io = require('socket.io')(app);
+
 app.listen(1337);
+
 var file = new static.Server('./public');
 function handler(req, res) {
   file.serve(req, res);
 }
 
-// socket I/O
-var io = sio.listen(app);
 io.sockets.on('connection', function (socket) {
   // user connected, send him the time
   var now = new Date().toDateString();
