@@ -1,5 +1,6 @@
-Node.js workshop
-================
+# Node.js workshop
+
+## Introduction
 
 Node.js is a server-side software system designed for writing scalable Internet applications, notably web servers. Programs are written on the server side in JavaScript, using event-driven, asynchronous I/O to minimize overhead and maximize scalability.
 
@@ -14,3 +15,7 @@ You'll learn how to write a webserver in it and how to handle events from differ
 You'll need a laptop with node.js, npm and a text editor installed.
 
 The workshop is aimed at people without prior experience with Node.js, but with some programming skills.
+
+## License
+
+This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 Unported License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/ or send a letter to Creative Commons, 444 Castro Street, Suite 900, Mountain View, California, 94041, USA.
