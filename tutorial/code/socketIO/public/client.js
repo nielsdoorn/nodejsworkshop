@@ -14,9 +14,9 @@ socket.on('news', function(data) {
 });
 
 window.onload = function(e) {
-	console.log('loaded');
-	document.getElementById('button').onclick = function() {
-		console.log('pressed...');
-		socket.emit('press', 'yes I pressed the button');
-	}
+  console.log('loaded');
+  document.getElementById('button').onclick = function() {
+    console.log('pressed...');
+    socket.emit('press', 'yes I pressed the button');
+  }
 }
